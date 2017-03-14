@@ -29,16 +29,26 @@ public class UserValidatorImpl implements UserValidator {
     public Validation validatePutDto(UserDto userDto) {
         return new GroupValidation(
                 new FailCondition(
-                        () -> userDto.email == null || userDto.email.equals(""),
-                        "Почта пользователя не может быть пустой"
+                        () -> userDto.password == null || (userDto.password.length() < 8),
+                        "Пароль должен содержать не меньше 8 символов"
                 ),
                 new DependantValidation(
                         new FailCondition(
                                 () -> userDto.email == null || userDto.email.equals(""),
-                                "Юзернейм пользователя не может быть пустым"
+                                "Email пользователя не может быть пустым"
                         ),
                         new FailCondition(
                                 () -> seq(userRepository.findByEmail(userDto.email)).findFirst().isPresent(),
+                                "Пользователь с таким email'ом уже существует"
+                        )
+                ),
+                new DependantValidation(
+                        new FailCondition(
+                                () -> userDto.username == null || userDto.username.equals(""),
+                                "Юзернейм пользователя не может быть пустым"
+                        ),
+                        new FailCondition(
+                                () -> seq(userRepository.findByUsername(userDto.username)).findFirst().isPresent(),
                                 "Пользователь с таким юзернеймом уже существует"
                         )
                 )

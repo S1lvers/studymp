@@ -8,6 +8,10 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class UserDto {
     @JsonProperty("email")
     public String email;
+
     @JsonProperty("password")
     public String password;
+
+    @JsonProperty("username")
+    public String username;
 }
