@@ -2,10 +2,13 @@ package com.studymp.presentation.services;
 
 import com.studymp.presentation.dto.ResponseDto;
 import com.studymp.presentation.interfaces.ResponseDtoFactory;
+import org.springframework.stereotype.Component;
 
 /**
  * Created by qwerty on 14.03.2017.
  */
+
+@Component
 public class ResponseDtoFactoryImpl implements ResponseDtoFactory {
     @Override
     public <T> ResponseDto<T> success(T body) {
