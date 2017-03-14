@@ -11,6 +11,4 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("api/auth")
 public class UserPutController {
     private static final Logger LOGGER = Logger.getLogger(UserPutController.class);
-
-
 }

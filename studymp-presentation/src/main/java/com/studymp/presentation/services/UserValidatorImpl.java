@@ -18,13 +18,12 @@ import static org.jooq.lambda.Seq.seq;
 @Component
 public class UserValidatorImpl implements UserValidator {
 
-    private final UserRepository userRepository;
+    private UserRepository userRepository;
 
     @Autowired
     public UserValidatorImpl(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
-
 
     @Override
     public Validation validatePutDto(UserDto userDto) {
