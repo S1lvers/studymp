@@ -3,7 +3,7 @@ package com.studymp.presentation.services;
 import com.studymp.domain.utils.validation.DependantValidation;
 import com.studymp.domain.utils.validation.FailCondition;
 import com.studymp.domain.utils.validation.GroupValidation;
-import com.studymp.persistance.repositories.UserRepository;
+import com.studymp.persistence.repositories.UserRepository;
 import com.studymp.presentation.dto.UserDto;
 import com.studymp.presentation.interfaces.UserValidator;
 import com.studymp.domain.interfaces.Validation;

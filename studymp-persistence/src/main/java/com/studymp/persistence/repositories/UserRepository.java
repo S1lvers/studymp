@@ -1,8 +1,7 @@
-package com.studymp.persistance.repositories;
+package com.studymp.persistence.repositories;
 
-import com.studymp.persistance.entity.User;
+import com.studymp.persistence.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;

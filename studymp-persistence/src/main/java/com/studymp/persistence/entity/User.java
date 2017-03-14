@@ -1,7 +1,6 @@
-package com.studymp.persistance.entity;
+package com.studymp.persistence.entity;
 
 import javax.persistence.*;
-import java.util.Set;
 
 /**
  * Created by qwerty on 14.03.2017.
