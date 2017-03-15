@@ -1,13 +1,18 @@
 package com.studymp.domain.services;
 
 import com.studymp.domain.interfaces.UserService;
+import com.studymp.persistence.entity.Role;
 import com.studymp.persistence.entity.User;
+import com.studymp.persistence.repositories.RoleRepository;
 import com.studymp.persistence.repositories.UserRepository;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import javax.transaction.Transactional;
+
+import java.util.HashSet;
+import java.util.Set;
 
 import static org.jooq.lambda.Seq.seq;
 
@@ -19,10 +24,12 @@ public class UserServiceImpl implements UserService {
     private static final Logger LOGGER = Logger.getLogger(UserServiceImpl.class);
 
     private final UserRepository userRepository;
+    private final RoleRepository roleRepository;
 
     @Autowired
-    public UserServiceImpl(UserRepository userRepository) {
+    public UserServiceImpl(UserRepository userRepository, RoleRepository roleRepository) {
         this.userRepository = userRepository;
+        this.roleRepository = roleRepository;
     }
 
     @Override
@@ -60,6 +67,9 @@ public class UserServiceImpl implements UserService {
     @Transactional
     @Override
     public Long create(User user) {
+        Set<Role> roles = new HashSet<>();
+        roles.add(roleRepository.findOne(1L));
+        user.setRoles(roles);
         Long id = userRepository.save(user).getId();
         userRepository.flush();
         return id;
