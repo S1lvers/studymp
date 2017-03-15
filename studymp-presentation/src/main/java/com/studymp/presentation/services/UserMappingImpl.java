@@ -20,6 +20,7 @@ public class UserMappingImpl implements UserMapping {
         user.setEmail(userDto.email == null ? UNDEFINED : userDto.email);
         user.setUsername(userDto.username);
         user.setPassword(HashGenerator.md5Custom(userDto.password));
+        /*user.setApproved(false);*/
         return user;
     }
 }

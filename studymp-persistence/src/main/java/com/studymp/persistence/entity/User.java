@@ -1,15 +1,16 @@
 package com.studymp.persistence.entity;
 
 import javax.persistence.*;
+import java.util.Set;
 
 /**
  * Created by qwerty on 14.03.2017.
  */
 @Entity
-@Table(name = "user", schema = "marketplace")
+@Table(name = "users", schema = "marketplace")
 public class User {
     @Id
-    @Column(name = "id", nullable = false, unique = true)
+    @Column(name = "user_id", nullable = false, unique = true)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
@@ -22,6 +23,25 @@ public class User {
     @Column(name = "password", nullable = false)
     private String password;
 
+    @ManyToMany(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
+    @JoinTable(joinColumns = @JoinColumn(name = "user_id"),inverseJoinColumns = @JoinColumn(name = "role_id"))
+    private Set<Role> roles;
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Set<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
+    }
+
+    public String getPassword() {
+        return password;
+    }
 
     public Long getId() {
         return id;
