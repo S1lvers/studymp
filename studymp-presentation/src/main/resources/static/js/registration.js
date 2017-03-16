@@ -4,10 +4,10 @@
 function regClick() {
 
     var formData = {
-        username: 'username4',
-        password: 'password',
-        email: 'email4'
-    }
+        'username': $('#username').val(),
+        'password': $('#password').val(),
+        'email': $('#email').val()
+    };
     $.ajax({
         type: 'PUT',
         contentType: "application/json",
