@@ -1,0 +1,21 @@
+* {
+    margin:0;
+}
+body {
+    height: 100%;
+    min-width:900px;
+}
+html {
+    position:relative;
+    min-height:100%;
+}
+#main_wrapper {
+    padding-bottom: 70px;/*Примерно 2 размера footer, чтобы он не наезжал на контент при узком окне браузера*/
+}
+#index_footer_bottom {
+    height: 35px;
+    background: #f7f7f7;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}

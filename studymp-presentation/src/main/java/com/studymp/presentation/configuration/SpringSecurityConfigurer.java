@@ -19,7 +19,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
-
 @Configuration
 @EnableWebSecurity
 public class SpringSecurityConfigurer extends WebSecurityConfigurerAdapter{
@@ -29,25 +28,6 @@ public class SpringSecurityConfigurer extends WebSecurityConfigurerAdapter{
 
     @Autowired
     private UserService userService;
-
-    @Override
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.authenticationProvider(authProvider());
-    }
-
-    @Bean
-    public DaoAuthenticationProvider authProvider() {
-        DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
-        authProvider.setUserDetailsService(userDetailsService);
-        authProvider.setPasswordEncoder(passwordEncoder());
-        return authProvider;
-    }
-
-    @Override
-    public UserDetailsService userDetailsServiceBean() throws Exception {
-        return new UserDetailsServiceImpl(userService);
-    }
-
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -66,10 +46,27 @@ public class SpringSecurityConfigurer extends WebSecurityConfigurerAdapter{
 
     @Override
     public void configure(WebSecurity web) throws Exception {
-        web.ignoring().antMatchers("/js*");
-        web.ignoring().antMatchers("/css*");
-        web.ignoring().antMatchers("/images*");
-        web.ignoring().antMatchers("/fonts/roboto*");
+        web.ignoring().antMatchers("/js/**");
+        web.ignoring().antMatchers("/css/**");
+        web.ignoring().antMatchers("/fonts/**");
+    }
+
+    @Override
+    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+        auth.authenticationProvider(authProvider());
+    }
+
+    @Override
+    public UserDetailsService userDetailsServiceBean() throws Exception {
+        return new UserDetailsServiceImpl(userService);
+    }
+
+    @Bean
+    public DaoAuthenticationProvider authProvider() {
+        DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
+        authProvider.setUserDetailsService(userDetailsService);
+        authProvider.setPasswordEncoder(passwordEncoder());
+        return authProvider;
     }
 
     @Bean

@@ -136,8 +136,6 @@ article[role="login"] p {
     padding: 0;
 }
 
-
-
 .nav-tab-holder .nav-tabs > li.active > a,
 .nav-tabs > li.active > a:hover,
 .nav-tabs > li.active > a:focus {
@@ -145,6 +143,10 @@ article[role="login"] p {
     background-color: #23bab5;
     border: 0;
     border-radius: 0;
+}
+
+.corporate.pflb {
+    background-color: #2480fe !important;
 }
 
 
