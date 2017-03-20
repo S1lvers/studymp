@@ -1,5 +1,5 @@
 .login-signup {
-    padding: 25 0 25px;
+    padding: 0 0 25px;
     margin-top:25px;
 
 }
@@ -12,9 +12,9 @@
 .btn-success {
     background: #23bab5;
     border-radius:0;
-    border: 2px solid #23bab5;
     webkit-transition: all 400ms cubic-bezier(.4,0,.2,1);
     transition: all 400ms cubic-bezier(.4,0,.2,1);
+
 }
 
 
@@ -58,11 +58,13 @@ article[role="signup"] input[type="submit"] {
 }
 
 .center{
-    background: red;
+/*    background: mediumseagreen;*/
     border-radius:0;
-    border: 2px solid red;
+ /*   border: mediumseagreen;*/
     webkit-transition: all 400ms cubic-bezier(.4,0,.2,1);
     transition: all 400ms cubic-bezier(.4,0,.2,1);
+
+/*    text-align: center;*/
 }
 
 

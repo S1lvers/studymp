@@ -1,20 +1,45 @@
+
 $('#enter-to-studymp').click(function (e) {
 
     var formData = {
-        'username': $('input[name=username]').val(),
-        'password': $('input[name=password]').val()
+        'username': $('input[id=username]').val(),
+        'password': $('input[id=password]').val()
     };
 
-    var successForm = false;
-    if (formData.password.length > 7){
-        successForm = true;
-        $('#error_area').remove();
-    }
-    else {
-        $('#error_wrapper').append('<div class="container"> ' +
-            '<textarea id="error_area"> Пароль дожен быть не менее 8 символов </textarea>' +
+    var successForm = false, condition = 0;
+
+        if (formData.password.length > 7) {
+            /*condition = condition + 1;*/
+            successForm = true;
+            $('#error_area').replaceWith();
+        }
+        else {
+
+            $('#error_wrapper').replaceWith('<div class="container">' +
+                '<textarea id="error_area"> Пароль должен быть не менее 8 символов </textarea>' +
+                '</div>');
+        }
+
+
+  /*  if (validateEmail( $(formData.username).val() ) ) {
+        alert('Ok!');
+        condition = condition + 1;
+    } else {
+        $('#error_wrapper').replaceWith('<div class="container">' +
+            '<textarea id="error_area"> Неправильно введена почта </textarea>' +
             '</div>');
-    } 
+    }
+
+
+    function validateEmail(username) {
+        var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        return re.test(username);
+            }
+
+     if (condition = 2){
+        successForm = true;
+    }
+*/
 
     if(successForm) {
         $.ajax({
@@ -30,6 +55,7 @@ $('#enter-to-studymp').click(function (e) {
                     '<textarea id="error_area">'+ data.body +' </textarea>' +
                     '</div>');
             }
+            data.console.log()
          });
     }
 
