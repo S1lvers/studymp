@@ -43,7 +43,7 @@ public class PersistenceJPAConfig{
         dataSource.setDriverClassName("com.mysql.jdbc.Driver");
         dataSource.setUrl("jdbc:mysql://localhost:3306/marketplace");
         dataSource.setUsername("root");
-        dataSource.setPassword("admin");
+        dataSource.setPassword("hunter");
         return dataSource;
     }
 

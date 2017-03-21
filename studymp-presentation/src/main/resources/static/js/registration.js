@@ -8,8 +8,6 @@ $('#reg-on-studymp').click(function (e) {
         'email': $('input[id=email]').val(),
         'password': $('input[id=password]').val(),
     };
-
-
     if (formData.username.length < 5) {
         $('#error_wrapper').replaceWith('<textarea id="error_wrapper"> Имя пользователя должно быть не менее 5 символов </textarea>');
         return;
