@@ -5,17 +5,17 @@ $('#enter-to-studymp').click(function (e) {
         'username': $('input[id=username]').val(),
         'password': $('input[id=password]').val()
     };
+    
+    var successForm = false;
 
-    var successForm = false, condition = 0;
-
-        if (formData.password.length > 7) {
+    if (formData.password.length > 7){
             /*condition = condition + 1;*/
-            successForm = true;
-            $('#error_area').replaceWith();
-        }
-        else {
-
-            $('#error_wrapper').replaceWith('<div class="container">' +
+        successForm = true;
+        $('#error_area').remove();
+    }
+    else {
+        $('#error_wrapper').append('<div class="container"> ' +
+            '<textarea id="error_area"> Пароль дожен быть не менее 8 символов </textarea>' +
                 '<textarea id="error_area"> Пароль должен быть не менее 8 символов </textarea>' +
                 '</div>');
         }
@@ -27,9 +27,7 @@ $('#enter-to-studymp').click(function (e) {
     } else {
         $('#error_wrapper').replaceWith('<div class="container">' +
             '<textarea id="error_area"> Неправильно введена почта </textarea>' +
-            '</div>');
     }
-
 
     function validateEmail(username) {
         var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -41,22 +39,15 @@ $('#enter-to-studymp').click(function (e) {
     }
 */
 
-    if(successForm) {
         $.ajax({
-         type : "POST",
+         type : "PUT",
          contentType : "application/json",
-         url : "secure",
+         url : "api/auth/register",
          data : JSON.stringify(formData),
          dataType : 'json',
          timeout : 100000
          }).success(function (data) {
-            if (!data.status){
-                $('#error_wrapper').append('<div class="container"> ' +
-                    '<textarea id="error_area">'+ data.body +' </textarea>' +
-                    '</div>');
-            }
             data.console.log()
+            
          });
-    }
-
 });
