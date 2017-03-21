@@ -1,5 +1,6 @@
 package com.studymp.domain.services;
 
+import com.studymp.domain.exceptions.NotFoundException;
 import com.studymp.domain.interfaces.UserService;
 import com.studymp.persistence.entity.Role;
 import com.studymp.persistence.entity.User;
@@ -43,12 +44,12 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User findByUsername(String username) throws Exception {
+    public User findByUsername(String username) throws NotFoundException {
         User result = seq(userRepository.findByUsername(username))
                 .findFirst()
                 .orElseThrow(() -> {
                     LOGGER.error("Не удалось найти пользователя с именем " + username);
-                    return new Exception();
+                    return new NotFoundException();
                 });
         return result;
     }

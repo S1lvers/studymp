@@ -1,5 +1,6 @@
 package com.studymp.presentation.controllers;
 
+import com.studymp.domain.interfaces.MailFactory;
 import com.studymp.domain.interfaces.UserService;
 import com.studymp.domain.interfaces.Validation;
 import com.studymp.persistence.entity.User;
@@ -28,14 +29,16 @@ public class UserPutController {
     private final UserValidator userValidator;
     private final UserMapping userMapping;
     private final UserService userService;
+    private final MailFactory mailFactory;
 
     @Autowired
     public UserPutController(ResponseDtoFactory responseDtoFactory, UserValidator userValidator,
-                             UserMapping userMapping, UserService userService) {
+                             UserMapping userMapping, UserService userService, MailFactory mailFactory) {
         this.responseDtoFactory = responseDtoFactory;
         this.userValidator = userValidator;
         this.userMapping = userMapping;
         this.userService = userService;
+        this.mailFactory = mailFactory;
     }
 
     @RequestMapping(
@@ -53,6 +56,12 @@ public class UserPutController {
         }
         User user = userMapping.map(userDto);
         userService.create(user);
+        try {
+            mailFactory.sendConfirmEmail(user);
+        }
+        catch (Exception e){
+            return ResponseEntity.ok(responseDtoFactory.failure(String.format("Ошибка при попытке отправки ссылки на подтверждение аккаунта")));
+        }
         return ResponseEntity.ok(responseDtoFactory.success());
     }
 }

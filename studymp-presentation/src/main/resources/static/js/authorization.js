@@ -2,35 +2,18 @@ $('#enter-to-studymp').click(function (e) {
 
     var formData = {
         'username': $('input[name=username]').val(),
+        'email': "tosha993@mail.ru",
         'password': $('input[name=password]').val()
     };
-
-    var successForm = false;
-    if (formData.password.length > 7){
-        successForm = true;
-        $('#error_area').remove();
-    }
-    else {
-        $('#error_wrapper').append('<div class="container"> ' +
-            '<textarea id="error_area"> Пароль дожен быть не менее 8 символов </textarea>' +
-            '</div>');
-    } 
-
-    if(successForm) {
+    
         $.ajax({
-         type : "POST",
+         type : "PUT",
          contentType : "application/json",
-         url : "secure",
+         url : "api/auth/register",
          data : JSON.stringify(formData),
          dataType : 'json',
          timeout : 100000
          }).success(function (data) {
-            if (!data.status){
-                $('#error_wrapper').append('<div class="container"> ' +
-                    '<textarea id="error_area">'+ data.body +' </textarea>' +
-                    '</div>');
-            }
+            
          });
-    }
-
 });
