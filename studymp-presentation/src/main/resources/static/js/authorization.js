@@ -48,6 +48,6 @@ $('#enter-to-studymp').click(function (e) {
          timeout : 100000
          }).success(function (data) {
             data.console.log()
-            
+
          });
 });
