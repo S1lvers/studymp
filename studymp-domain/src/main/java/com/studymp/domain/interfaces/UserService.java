@@ -18,4 +18,5 @@ public interface UserService {
     Long create(User user);
     void update(User user);
     void delete(Long id);
+    void approve(User user);
 }

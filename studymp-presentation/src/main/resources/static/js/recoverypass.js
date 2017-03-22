@@ -1,9 +1,14 @@
 $('#forgot_password').click(function (e) {
     var formData = {
-        'username': $('input[id=username]').val(),
         'email': $('input[id=email]').val(),
-        'password': $('input[id=password]').val(),
-        'password2': $('input[id=password2]').val(),
-        'captcha': $('input[id=captcha]').val()
     };
+    $.ajax({
+        type: "POST",
+        contentType: "application/json",
+        url: "/api/auth/forgotPassword",
+        data: JSON.stringify(formData),
+        dataType: 'json'
+    }).done(function (data) {
+        console.log(data);
+    });
 });
