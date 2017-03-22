@@ -26,6 +26,10 @@ span {
     color: #00bb00 ;
 }
 
+i {
+    color: red;
+}
+
 ul {
     list-style-type: none;
 }
