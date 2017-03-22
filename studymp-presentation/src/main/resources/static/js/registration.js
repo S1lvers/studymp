@@ -1,12 +1,9 @@
-/**
- * Created by malko on 20.03.2017.
- */
 $('#registration-form').submit(function(e) {
     e.preventDefault();
     var formData = {
         'username': $('input[id=username]').val(),
         'email': $('input[id=email]').val(),
-        'password': $('input[id=password]').val(),
+        'password': $('input[id=password]').val()
     };
 
 

@@ -22,6 +22,10 @@ a {
     color: #23bab5;
 }
 
+span {
+    color: #00bb00 ;
+}
+
 ul {
     list-style-type: none;
 }
