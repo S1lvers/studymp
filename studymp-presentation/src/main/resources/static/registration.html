@@ -56,7 +56,7 @@
 
                 </div>
                 <div th:fragment="content">
-                    <form name="f" th:action="@{/login}" method="post" data-toggle="validator" role="form">
+                    <form id="registration-form" data-toggle="validator" role="form">
                         <fieldset>
                             <div class="form-group">
                                 <label for="username" class="control-label">Имя пользователя</label>
@@ -82,17 +82,17 @@
                                        data-match-error="Пароли не совпадают" class="form-control" required/>
                                 <div class="help-block with-errors"></div>
                             </div>
-                            <div class="center">
+                         <!--   <div class="center">
                                 <img src="images/2.jpg" width="350" height="200" alt="Не прогрузилась капча"/>
                                 <p>&nbsp;</p>
                                 <input type="text" name="captcha" id="captcha" placeholder="Введите надпись на картинке"
                                        required class="form-control"/>
-                            </div>
+                            </div>-->
                             <br>
                             <div class="form-action">
 
-                                <button type="submit" class="btn btn-primary">Проверить</button>
-                                <div class="btn btn-primary" id="reg-on-studymp">Зарегистирироваться</div>
+                                <button type="submit" class="btn btn-primary">Зарегистрироваться</button>
+
                             </div>
                         </fieldset>
                     </form>
@@ -108,4 +108,5 @@
 <script src="js/frameworks/bootstrap.min.js"></script>
 <script src="js/frameworks/bootstrap.js"></script>
 <script src="js/registration.js"></script>
+<script src="js/frameworks/plugins/bootstrap-form-validator.js"></script>
 </html>
