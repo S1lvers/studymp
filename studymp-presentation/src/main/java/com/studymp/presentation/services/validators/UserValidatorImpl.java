@@ -1,4 +1,4 @@
-package com.studymp.presentation.services;
+package com.studymp.presentation.services.validators;
 
 import com.studymp.domain.utils.validation.DependantValidation;
 import com.studymp.domain.utils.validation.FailCondition;
