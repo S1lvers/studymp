@@ -60,7 +60,6 @@ public class EmailSenderImpl implements EmailSender {
                 return new PasswordAuthentication(SMTP_USERNAME, SMTP_PASSWORD);
             }
         });
-        session.setDebug(true);
         try {
             final MimeMessage message = new MimeMessage(session);
             message.setRecipient(Message.RecipientType.TO, new InternetAddress(recipientEmail));

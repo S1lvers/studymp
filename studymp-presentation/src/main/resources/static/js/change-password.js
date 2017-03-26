@@ -7,7 +7,7 @@ $('#change-form').submit(function (e) {
     };
 
 
-    $.ajax('/jquery',
+    $.ajax(
         {
         type: "PUT",
         contentType: "application/json",
