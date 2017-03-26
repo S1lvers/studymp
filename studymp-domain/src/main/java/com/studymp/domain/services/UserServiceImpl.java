@@ -68,9 +68,9 @@ public class UserServiceImpl implements UserService {
     @Transactional
     @Override
     public Long create(User user) {
-        /*Set<Role> roles = new HashSet<>();
+        Set<Role> roles = new HashSet<>();
         roles.add(roleRepository.findOne(1L));
-        user.setRoles(roles);*/
+        user.setRoles(roles);
         Long id = userRepository.save(user).getId();
         userRepository.flush();
         return id;
