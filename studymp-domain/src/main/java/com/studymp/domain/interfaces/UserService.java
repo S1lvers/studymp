@@ -19,4 +19,5 @@ public interface UserService {
     void update(User user);
     void delete(Long id);
     void approve(User user);
+    void approve(String username) throws NotFoundException;
 }
