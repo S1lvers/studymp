@@ -3,9 +3,11 @@ package com.studymp.presentation.controllers;
 import com.studymp.domain.interfaces.MailFactory;
 import com.studymp.domain.interfaces.UserService;
 import com.studymp.domain.interfaces.Validation;
+import com.studymp.domain.services.ConfirmEmailImpl;
 import com.studymp.domain.services.ResetPasswordImpl;
 import com.studymp.persistence.entity.User;
 import com.studymp.presentation.dto.ChangePasswordDto;
+import com.studymp.presentation.dto.ConfirmAccDto;
 import com.studymp.presentation.dto.EmailDto;
 import com.studymp.presentation.interfaces.EmailValidator;
 import com.studymp.presentation.interfaces.PasswordValidator;
@@ -39,6 +41,7 @@ public class AuthorizationController {
     private final UserService userService;
     private final PasswordValidator passwordValidator;
     private final ResetPasswordImpl resetPasswordService;
+    private final ConfirmEmailImpl confirmEmailmpl;
 
     @Autowired
     private PasswordEncoder passwordEncoder;
@@ -47,13 +50,15 @@ public class AuthorizationController {
     public AuthorizationController(ResponseDtoFactory responseDtoFactory, MailFactory mailFactory,
                                    EmailValidator emailValidator,
                                    UserService userService, PasswordValidator passwordValidator,
-                                   ResetPasswordImpl resetPasswordService) {
+                                   ResetPasswordImpl resetPasswordService,
+                                   ConfirmEmailImpl confirmEmailmpl) {
         this.responseDtoFactory = responseDtoFactory;
         this.mailFactory = mailFactory;
         this.emailValidator = emailValidator;
         this.userService = userService;
         this.passwordValidator = passwordValidator;
         this.resetPasswordService = resetPasswordService;
+        this.confirmEmailmpl = confirmEmailmpl;
     }
 
     @RequestMapping(
@@ -104,5 +109,21 @@ public class AuthorizationController {
         }
     }
 
+    @RequestMapping(
+            value = "/confirmAccount",
+            consumes = MediaType.APPLICATION_JSON_UTF8_VALUE,
+            produces = MediaType.APPLICATION_JSON_UTF8_VALUE,
+            method = RequestMethod.POST)
+    public ResponseEntity confirmAccount(@RequestBody ConfirmAccDto confirmAccDto) {
+        try {
+            String username = confirmEmailmpl.getUsernameForHash(confirmAccDto.hash);
+            userService.approve(username);
+            return ResponseEntity.ok(responseDtoFactory.success());
+        } catch (Exception e){
+            LOGGER.error(String.format("Не удалось обновить пароль, возможно устарел hash"));
+            LOGGER.debug(e);
+            return ResponseEntity.ok(responseDtoFactory.failure("Не удалось обновить пароль"));
+        }
+    }
 
 }

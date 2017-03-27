@@ -98,4 +98,10 @@ public class UserServiceImpl implements UserService {
         userRepository.save(user);
         userRepository.flush();
     }
+
+    @Override
+    public void approve(String username) throws NotFoundException {
+        User user = findByUsername(username);
+        approve(user);
+    }
 }
