@@ -33,14 +33,16 @@ public class SpringSecurityConfigurer extends WebSecurityConfigurerAdapter{
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable().authorizeRequests()
                 .antMatchers("/api/auth/**", "/registration.html").permitAll()
-                .antMatchers("/user*").hasAuthority("USER")
+                .antMatchers("/").hasAuthority("USER")
                 .antMatchers("/admin*").hasAuthority("ADMIN")
                 .anyRequest().authenticated()
                 .and()
                 .formLogin().loginPage("/login.html").permitAll()
                 .and()
                 .logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/login.html");
+        /*http.csrf().disable().authorizeRequests().anyRequest().permitAll();*/
     }
+
 
     @Override
     public void configure(WebSecurity web) throws Exception {
