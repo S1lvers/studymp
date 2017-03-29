@@ -7,6 +7,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
 
+import java.util.List;
+
 
 /**
  * Created by qwerty on 14.03.2017.
@@ -20,4 +22,6 @@ public interface UserService {
     void delete(Long id);
     void approve(User user);
     void approve(String username) throws NotFoundException;
+    List<User> find20First() throws Exception;
+    List<User> findAll() throws Exception;
 }

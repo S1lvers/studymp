@@ -8,11 +8,15 @@ import com.studymp.persistence.repositories.RoleRepository;
 import com.studymp.persistence.repositories.UserRepository;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Component;
+import org.springframework.web.bind.annotation.ModelAttribute;
 
 import javax.transaction.Transactional;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import static org.jooq.lambda.Seq.seq;
@@ -95,13 +99,24 @@ public class UserServiceImpl implements UserService {
         Set<Role> roles = new HashSet<>();
         roles.add(roleRepository.findOne(1L));
         user.setRoles(roles);
-        userRepository.save(user);
-        userRepository.flush();
+        update(user);
     }
 
     @Override
     public void approve(String username) throws NotFoundException {
         User user = findByUsername(username);
         approve(user);
+    }
+
+    @Override
+    public List<User> find20First() throws Exception {
+        Page<User> users = userRepository.findAll(new PageRequest(1, 20));
+        return users.getContent();
+    }
+
+    @Override
+    @ModelAttribute("users")
+    public List<User> findAll() throws Exception {
+        return userRepository.findAll();
     }
 }
