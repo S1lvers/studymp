@@ -1,9 +1,17 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Title</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+
+    <link th:href="@{/css/frameworks/bootstrap.min.css}" rel="stylesheet" media="screen"/>
+
+    <script th:src="@{/js/frameworks/jquery-3.1.1.min.js}"></script>
+
+    <script th:src="@{/js/frameworks/bootstrap.min.js}"></script>
+
 </head>
 <body>
+<div class="container">
     <table>
         <thead>
         <tr>
@@ -12,9 +20,13 @@
         </thead>
         <tbody>
         <tr th:each="u: ${users}">
-            <td th:text="${u.username}">Oranges</td>
+            <td th:text="${u.username}">
+            </td>
         </tr>
         </tbody>
     </table>
+
+</div>
 </body>
+
 </html>
