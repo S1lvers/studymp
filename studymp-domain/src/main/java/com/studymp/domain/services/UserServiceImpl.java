@@ -98,6 +98,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public void approve(User user) {
         user.setEnabled(true);
+        update(user);
     }
 
     @Override

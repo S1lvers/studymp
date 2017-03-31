@@ -1,10 +1,19 @@
 $('#user_update').click(function (e) {
     var formData = {
-        'username': "username",
-        'enabled': true,
-        'email': "tosha993@mail.ru",
+        
+        'username': $('input[id=username]').val(),
+        'enabled': false,
+        'email': $('input[id=email]').val(),
         'password': ""
+    };
+    
+/*    if (enabled==true){
+        enabled=false;
     }
+    else {
+        enabled=true;
+    }*/
+    
     $.ajax({
         type: "PUT",
         contentType: "application/json",
