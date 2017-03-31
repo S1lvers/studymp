@@ -75,6 +75,7 @@ public class UserServiceImpl implements UserService {
         Set<Role> roles = new HashSet<>();
         roles.add(roleRepository.findOne(1L));
         user.setRoles(roles);
+        user.setEnabled(false);
         Long id = userRepository.save(user).getId();
         userRepository.flush();
         return id;
@@ -96,10 +97,7 @@ public class UserServiceImpl implements UserService {
     @Transactional
     @Override
     public void approve(User user) {
-        Set<Role> roles = new HashSet<>();
-        roles.add(roleRepository.findOne(1L));
-        user.setRoles(roles);
-        update(user);
+        user.setEnabled(true);
     }
 
     @Override
