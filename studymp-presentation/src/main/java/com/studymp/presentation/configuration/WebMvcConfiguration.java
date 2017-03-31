@@ -16,10 +16,10 @@ public class WebMvcConfiguration extends WebMvcConfigurerAdapter {
         registry.setOrder(Ordered.HIGHEST_PRECEDENCE);
     }
 
-    @Override
+   /* @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        if (!registry.hasMappingForPattern("/resources/**")) {
-            registry.addResourceHandler("/resources/**").addResourceLocations("/resources/");
+        if (!registry.hasMappingForPattern("/resources*//**")) {
+            registry.addResourceHandler("/resources*//**").addResourceLocations("/resources/");
         }
-    }
+    }*/
 }

@@ -35,11 +35,12 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         try {
             User user = userService.findByUsername(username);
             if (user == null) {
-                LOGGER.debug("User not found with the provided username");
+                LOGGER.error("User not found with the provided username");
                 return null;
             }
-            LOGGER.debug(" User from username " + user.toString());
-            return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(), getAuthorities(user));
+            LOGGER.error(" User from username " + user.toString());
+            return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(), user.isEnabled(), true, true, true, getAuthorities(user));
+            //return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(), getAuthorities(user));
         }
         catch (Exception e){
             throw new UsernameNotFoundException("User not found");

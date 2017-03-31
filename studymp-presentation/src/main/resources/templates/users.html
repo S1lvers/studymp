@@ -5,10 +5,6 @@
 
     <link th:href="@{/css/frameworks/bootstrap.min.css}" rel="stylesheet" media="screen"/>
 
-    <script th:src="@{/js/frameworks/jquery-3.1.1.min.js}"></script>
-
-    <script th:src="@{/js/frameworks/bootstrap.min.js}"></script>
-
 </head>
 <body>
 <div class="container">
@@ -22,11 +18,20 @@
         <tr th:each="u: ${users}">
             <td th:text="${u.username}">
             </td>
+            <td>
+                <div class="btn btn-primary" id="user_update">UPDATE</div>
+            </td>
         </tr>
         </tbody>
     </table>
 
 </div>
+
 </body>
+<script th:src="@{/js/frameworks/jquery-3.1.1.min.js}"></script>
+
+<script th:src="@{/js/updateUser.js}"></script>
+
+<script th:src="@{/js/frameworks/bootstrap.min.js}"></script>
 
 </html>
