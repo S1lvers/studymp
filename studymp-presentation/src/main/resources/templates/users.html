@@ -12,15 +12,14 @@
             border: 1px solid green;
         }
 
+    <script th:src="@{/js/frameworks/jquery-3.1.1.min.js}"></script>
         td {
             text-align: center;
         }
-
-        th {
+    <script th:src="@{/js/frameworks/bootstrap.min.js}"></script>
             text-align: center;
         }
     </style>
-
 </head>
 <body>
 
@@ -79,9 +78,6 @@
                             </td>
                             <td th:text="${u.username}">
                             </td>
-                            <td th:text="${u.email}">
-                            </td>
-                            <td>
                                 <div class="form-action">
                                     <button type="submit" class="btn btn-primary">ЖМИ</button>
                                 </div>
@@ -94,7 +90,13 @@
         </div>
     </form>
 </div>
+
 </body>
+<script th:src="@{/js/frameworks/jquery-3.1.1.min.js}"></script>
+
+<script th:src="@{/js/updateUser.js}"></script>
+
+<script th:src="@{/js/frameworks/bootstrap.min.js}"></script>
 
 <script th:src="@{/js/frameworks/jquery-3.1.1.min.js}"></script>
 

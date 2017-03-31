@@ -14,4 +14,7 @@ public class UserDto {
 
     @JsonProperty("username")
     public String username;
+
+    @JsonProperty("enabled")
+    public boolean enabled;
 }
