@@ -2,7 +2,7 @@ $('#user_update').click(function (e) {
     var formData = {
         
         'username': $('input[id=username]').val(),
-        'enabled': false,
+        'enabled': true,
         'email': $('input[id=email]').val(),
         'password': ""
     };
