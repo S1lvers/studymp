@@ -1,25 +1,19 @@
-$('#user_update').click(function (e) {
+$('.myCustomClass').click(function (e) {
+
+    var papanya = $(this).parent().parent();
+
     var formData = {
-        
-        'username': $('[id=username]').val(),
-        'enabled': true,
-        'email': $('input[id=email]').val(),
+        'username': papanya.attr('data-username'),
+        'email': papanya.attr('data-email'),
+        'enabled': "",
         'password': ""
     };
     
 /*    if (enabled==true){
         enabled=false;
     }
-    else {
-        enabled=true;
+
+    console.log(formData);
     }*/
     
-    $.ajax({
-        type: "PUT",
-        contentType: "application/json",
-        url: "/admin/user/update",
-        data: JSON.stringify(formData),
-        dataType: 'json',
-        timeout: 100000
-    })
 });

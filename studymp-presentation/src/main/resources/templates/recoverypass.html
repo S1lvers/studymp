@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="loyout">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>Title</title>
+</head>
+<body>
+<div layout:fragment="content">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-offset-3 col-lg-6 col-md-offset-2 col-md-8 col-sm-12">
+                <legend>Восстановление пароля</legend>
+                <div id="error_wrapper">
+                </div>
+                <div th:fragment="content">
+                    <form id="recovery_password" data-toggle="validator" role="form">
+                        <fieldset>
+                            <div class="form-group">
+                                <label for="email" class="control-label">Почта</label>
+                                <input type="email" name="email" id="email" placeholder="Введите Ваш Email"
+                                       required="required"
+                                       class="form-control"/>
+                                <div class="help-block with-errors"></div>
+                            </div>
+                            <div class="form-action">
+                                <button type="submit" class="btn btn-primary">Восстановить пароль!</button>
+                            </div>
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script th:src="@{/js/recoverypass.js}"></script>
+
+    <script th:src="@{/js/frameworks/plugins/bootstrap-form-validator.js}"></script>
+
+</div>
+</body>
+</html>
