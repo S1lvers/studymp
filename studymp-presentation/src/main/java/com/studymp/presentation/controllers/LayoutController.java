@@ -28,12 +28,4 @@ public class LayoutController {
         return "recoverypass";
     }
 
-
-    @RequestMapping(
-            value = "/login.html",
-            method = RequestMethod.GET
-    )
-    public String getLoginPage(Model model){
-        return "login";
-    }
 }

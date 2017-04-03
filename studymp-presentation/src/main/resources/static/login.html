@@ -1,15 +1,12 @@
 <!DOCTYPE html>
 <html lang="en"
-      xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorator="loyout">
+      xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta content="charset=UTF-8"/>
     <title>Title</title>
 </head>
 
 <body>
-<div layout:fragment="content">
     <div class="container">
         <div class="row">
             <div class="col-lg-offset-3 col-lg-6 col-md-offset-2 col-md-8 col-sm-12">
@@ -31,7 +28,6 @@
 
                             <div class="form-actions">
                                 <input type="submit" name="login" value="Войти" class="btn btn-primary"/>
-                                <a href="recoverypass.html" class="btn btn-link" id="forgot_password">Забыли пароль?</a>
                             </div>
                         </fieldset>
                     </form>
@@ -39,6 +35,5 @@
             </div>
         </div>
     </div>
-</div>
 </body>
 </html>
