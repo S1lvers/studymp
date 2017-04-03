@@ -8,6 +8,7 @@
 <body>
 <h1>Welcome to Spring MVC</h1>
 <b th:text="${execInfo.now.time}"></b>
+
 <div sec:authorize="hasAuthority('ADMIN')">
     This will only be displayed if authenticated user has role ROLE_ADMIN.
 </div>
@@ -15,5 +16,6 @@
 <div sec:authorize="hasAuthority('USER')">
     This will only be displayed if authenticated user has role USER.
 </div>
+
 </body>
 </html>

@@ -1,16 +1,13 @@
-$('#user_update').click(function (e) {
+$('.myCustomClass').click(function (e) {
+
+    var papanya = $(this).parent().parent();
+
     var formData = {
-        'username': "username",
-        'enabled': true,
-        'email': "tosha993@mail.ru",
+        'username': papanya.attr('data-username'),
+        'email': papanya.attr('data-email'),
+        'enabled': "",
         'password': ""
     }
-    $.ajax({
-        type: "PUT",
-        contentType: "application/json",
-        url: "/admin/user/update",
-        data: JSON.stringify(formData),
-        dataType: 'json',
-        timeout: 100000
-    })
+
+    console.log(formData);
 });

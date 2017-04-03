@@ -15,16 +15,13 @@
         </tr>
         </thead>
         <tbody>
-        <tr th:each="u: ${users}">
-            <td th:id="${u.username}" th:text="${u.username}">
-            </td>
-            <td>
-                <div class="btn btn-primary userTable" id="user_update">UPDATE</div>
-            </td>
+        <tr th:each="u: ${users}" th:attr="data-username=${u.username},data-email=${u.email}">
+            <td th:text="${u.username}"></td>
+            <td th:text="${u.email}"></td>
+            <td><div class="btn btn-primary myCustomClass">UPDATE</div></td>
         </tr>
         </tbody>
     </table>
-
 </div>
 
 </body>
