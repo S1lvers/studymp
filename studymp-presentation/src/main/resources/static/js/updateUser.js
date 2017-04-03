@@ -1,7 +1,7 @@
 $('#user_update').click(function (e) {
     var formData = {
         
-        'username': $('input[id=username]').val(),
+        'username': $('[id=username]').val(),
         'enabled': true,
         'email': $('input[id=email]').val(),
         'password': ""
