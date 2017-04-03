@@ -1,33 +1,70 @@
 <!DOCTYPE html>
-<html lang="en"
-      xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta content="charset=UTF-8"/>
+    <meta charset="UTF-8">
     <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="css/footerBot.css">
+    <link rel="stylesheet" type="text/css" href="css/frameworks/bootstrap.css">
 </head>
-
 <body>
+<div id="main_wrapper">
+    <div class="navbar navbar-default navbar-static-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                        data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">StudyMP</a>
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li class=" dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Помощь<span
+                                class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li class=""><a href="#">Вопросы и ответы</a></li>
+                            <li class=""><a href="#">Разрешение споров</a></li>
+                            <li class=""><a href="#">Общие правила</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="login.html">Войти</a></li>
+                    <li><a href="registration.html">Зарегистрироваться</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
     <div class="container">
         <div class="row">
             <div class="col-lg-offset-3 col-lg-6 col-md-offset-2 col-md-8 col-sm-12">
                 <legend>Вход</legend>
+                <div id="error_wrapper">
+
+                </div>
                 <div th:fragment="content">
-                    <form th:name="f" th:action="@{/login}" method="post">
+                    <form name="f" th:action="@{/login}" method="post">
                         <fieldset>
                             <div class="form-group">
                                 <label for="username">Имя пользователя</label>
-                                <input type="text" name="username" id="username" placeholder="Введите Ваш Email"
-                                       required="required"
+                                <input type="text" name="username" id="username" placeholder="Введите Ваш Email" required
                                        class="form-control"/>
                             </div>
                             <div class="form-group">
                                 <label for="password">Пароль</label>
                                 <input type="password" name="password" id="password" placeholder="Введите Ваш пароль"
-                                       required="required" class="form-control"/>
+                                       required class="form-control"/>
                             </div>
 
                             <div class="form-actions">
                                 <input type="submit" name="login" value="Войти" class="btn btn-primary"/>
+                                <a href="recoverypass.html" class="btn btn-link" id="forgot_password">Забыли пароль?</a>
                             </div>
                         </fieldset>
                     </form>
@@ -35,5 +72,10 @@
             </div>
         </div>
     </div>
+</div>
+<footer class="page-footer" id="index_footer_bottom">
+</footer>
 </body>
+<script src="js/frameworks/jquery-3.1.1.min.js"></script>
+<script src="js/frameworks/bootstrap.min.js"></script>
 </html>
