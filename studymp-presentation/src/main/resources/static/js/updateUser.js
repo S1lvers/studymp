@@ -12,8 +12,8 @@ $('.myCustomClass').click(function (e) {
 /*    if (enabled==true){
         enabled=false;
     }
-
+ }*/
     console.log(formData);
-    }*/
+
     
 });
