@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="loyout">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>Title</title>
+</head>
+
+<body>
+<div layout:fragment="content">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-offset-3 col-lg-6 col-md-offset-2 col-md-8 col-sm-12">
+                <legend>Вход</legend>
+                <div id="error_wrapper">
+                </div>
+                <div th:fragment="content">
+                    <form name="f" th:action="@{/login}" method="post">
+                        <fieldset>
+                            <div class="form-group">
+                                <label for="username">Имя пользователя</label>
+                                <input type="text" name="username" id="username" placeholder="Введите Ваш Email"
+                                       required="required"
+                                       class="form-control"/>
+                            </div>
+                            <div class="form-group">
+                                <label for="password">Пароль</label>
+                                <input type="password" name="password" id="password" placeholder="Введите Ваш пароль"
+                                       required="required" class="form-control"/>
+                            </div>
+
+                            <div class="form-actions">
+                                <input type="submit" name="login" value="Войти" class="btn btn-primary"/>
+                                <a href="recoverypass.html" class="btn btn-link" id="forgot_password">Забыли пароль?</a>
+                            </div>
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
