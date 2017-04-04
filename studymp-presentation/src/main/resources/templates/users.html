@@ -42,7 +42,6 @@
 </div>
 
 <div th:fragment="content">
-    <form id="user_update" role="form" name="f" th:action="@{/users}" method="post">
         <div class="container">
             <div class="row">
                 <div class="col-lg-offset-3 col-lg-6 col-md-offset-2 col-md-8 col-sm-12 col-xs-12">
@@ -58,40 +57,19 @@
                             <th>Логин пользователя</th>
                             <th>Email</th>
                             <th>Состояние</th>
-                            <th>Заблокировать дауна</th>
                         </tr>
-                        <tr th:each="u:${users}">
-                            <td >
-                                <div class="form-group">
-                                    <label  th:text="${u.id}" id="id">Имя пользователя</label>
-                                </div>
-                            </td>
-                            <td >
-                                <div class="form-group">
-                                    <span  th:text="${u.username}" id="username">Имя пользователя</span>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="form-group" th:text="${u.email}" id="email" >Имя пользователя
-                                </div>
-                            </td>
-                            <td>
-                                <div class="form-group">
-                                    <label  th:text="${u.enabled}" id="enabled" >Имя пользователя</label>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="form-action">
-                                    <button type="submit" class="btn btn-primary btn-xs">ЖМИ, ЕСЛИ АНТОН УЕБАК</button>
-                                </div>
-                            </td>
+                        <tr th:each="u: ${users}" th:attr="data-username=${u.username},data-email=${u.email},data-id=${u.id},data-enabled=${u.enabled}">
+                            <td th:text="${u.id}"></td>
+                            <td th:text="${u.username}"></td>
+                            <td th:text="${u.email}"></td>
+                            <td><div class="btn btn-group btn btn-primary myCustomClass" data-complete-text="заблочен"
+                                     data-uncomplete-text="разблочен" data-status-text="СТАТУС" data-toggle="buttons">UPDATE</div></td>
                         </tr>
                         </tbody>
                     </table>
                 </div>
             </div>
         </div>
-    </form>
 </div>
 
 </body>

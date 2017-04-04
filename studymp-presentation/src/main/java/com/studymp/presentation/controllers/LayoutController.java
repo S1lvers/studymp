@@ -27,6 +27,6 @@ public class LayoutController {
     public String getRecoveryPassPage(Model model){
         return "recoverypass";
     }
-    
+
 
 }
