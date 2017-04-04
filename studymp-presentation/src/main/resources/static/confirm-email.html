@@ -1,12 +1,30 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="loyout">
 <head>
-    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <title>Title</title>
 </head>
 <body>
+<div layout:fragment="content">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-offset-3 col-lg-6 col-md-offset-2 col-md-8 col-sm-12">
+                <legend>Вы зарегистрированы!</legend>
+                <script type="text/javascript">
+                    setTimeout(function() {
+                        document.location.href = "login.html";
+                    },1500);
+                    </script>
+            </div>
+        </div>
+    </div>
 
+    <script th:src="@{/js/frameworks/plugins/bootstrap-form-validator.js}"></script>
+
+</div>
 </body>
-<script src="js/frameworks/jquery-3.1.1.min.js"></script>
-<script src="js/confirm-email.js"></script>
+
 </html>
