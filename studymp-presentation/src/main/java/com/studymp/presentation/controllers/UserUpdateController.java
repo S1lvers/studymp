@@ -45,7 +45,7 @@ public class UserUpdateController {
                 User user = userService.findByUsername(userDto.username);
                 user.setEnabled(userDto.enabled);
                 userService.update(user);
-                return ResponseEntity.ok(responseDtoFactory.success());
+                return ResponseEntity.ok(responseDtoFactory.success(user.isEnabled()));
             } catch (Exception e){
                 LOGGER.error(String.format("Не удалось обновить пользоватля %s", userDto.username));
                 return ResponseEntity.ok(responseDtoFactory.failure(String.format("Не удалось обновить пользоватля %s", userDto.username)));

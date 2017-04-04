@@ -8,24 +8,13 @@ $('.myCustomClass').click(function (e) {
         'enabled': papanya.attr('data-enabled'),
         'password': ""
     };
-    
-   if (papanya.attr('data-enabled') == 'true'){
-       var formData = {
-           'username': papanya.attr('data-username'),
-           'email': papanya.attr('data-email'),
-           'enabled': false,
-           'password': ""
-       };
+
+    if (papanya.attr('data-enabled') == 'true') {
+        formData.enabled = false;
     }
     else {
-       var formData = {
-           'username': papanya.attr('data-username'),
-           'email': papanya.attr('data-email'),
-           'enabled': true,
-           'password': ""
-       };
-
-   }
+        formData.enabled = true;
+    }
 
     $.ajax({
         type: "PUT",
@@ -33,16 +22,16 @@ $('.myCustomClass').click(function (e) {
         url: "user/update",
         data: JSON.stringify(formData),
         dataType: 'json'
-    }).always(function(){
-        if (papanya.attr('data-enabled') == 'true'){
-            $('.btn').button('complete');
-            
-        }
-        else{
-            $('.btn').button('uncomplete');
-        }
-    });
-    console.log(formData);
+    }).done(function (data) {
+        /*     if (papanya.attr('data-enabled') == 'true'){
+         $('.btn').button('complete');
 
-    
+         }
+         else{
+         $('.btn').button('uncomplete');
+         }*/
+        console.log(data);
+    });
+
+
 });

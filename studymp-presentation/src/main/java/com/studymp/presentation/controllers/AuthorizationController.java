@@ -23,6 +23,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
@@ -110,19 +111,17 @@ public class AuthorizationController {
     }
 
     @RequestMapping(
-            value = "/confirmAccount",
-            consumes = MediaType.APPLICATION_JSON_UTF8_VALUE,
-            produces = MediaType.APPLICATION_JSON_UTF8_VALUE,
-            method = RequestMethod.POST)
-    public ResponseEntity confirmAccount(@RequestBody ConfirmAccDto confirmAccDto) {
+            value = "/confirm-email",
+            method = RequestMethod.GET)
+    public String confirmAccount(@RequestParam(value = "hash") String hash) {
         try {
-            String username = confirmEmailmpl.getUsernameForHash(confirmAccDto.hash);
+            String username = confirmEmailmpl.getUsernameForHash(hash);
             userService.approve(username);
-            return ResponseEntity.ok(responseDtoFactory.success());
+            return "confirm-email";
         } catch (Exception e){
             LOGGER.error(String.format("Не удалось обновить пароль, возможно устарел hash"));
             LOGGER.debug(e);
-            return ResponseEntity.ok(responseDtoFactory.failure("Не удалось обновить пароль"));
+            return "error";
         }
     }
 
