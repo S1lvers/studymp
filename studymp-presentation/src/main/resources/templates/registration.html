@@ -10,13 +10,22 @@
 <body>
 
 <div layout:fragment="content">
-    <!-- СТИЛИ -->
+    <link th:href="@{/css/frameworks/animatedLoader.css}" rel="stylesheet" media="screen"/>
     <div class="container">
         <div class="row">
             <div class="col-lg-offset-3 col-lg-6 col-md-offset-2 col-md-8 col-sm-12">
                 <legend>Регистрация</legend>
-                <div id="error_wrapper">
+
+                <div class="container">
+                    <div class="row mt">
+                        <div class="col-md-3">
+                            <div id="error_wrapper">
+                            </div>
+
+                        </div>
+                    </div>
                 </div>
+
                 <div th:fragment="content">
                     <form id="registration-form" data-toggle="validator" role="form">
                         <fieldset>
