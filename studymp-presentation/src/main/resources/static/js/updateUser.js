@@ -9,13 +9,23 @@ $('.myCustomClass').click(function (e) {
         'password': ""
     };
 
-    if (papanya.attr('data-enabled') == 'true') {
-        formData.enabled = false;
-    }
-    else {
-        formData.enabled = true;
-    }
+    $(function() {
+        $('#toggle-event').slideToggle(function() {
+            $('#console-event').html('Состояние: ' + $(this).prop('checked'));
+            formData.enabled = $(this).prop('checked');
+            $.ajax({
+                type: "PUT",
+                contentType: "application/json",
+                url: "user/update",
+                data: JSON.stringify(formData),
+                dataType: 'json'
+            }).done(function (data) {
 
+                console.log(data);
+            });
+        })
+    });
+/*
     $.ajax({
         type: "PUT",
         contentType: "application/json",
@@ -23,15 +33,10 @@ $('.myCustomClass').click(function (e) {
         data: JSON.stringify(formData),
         dataType: 'json'
     }).done(function (data) {
-        /*     if (papanya.attr('data-enabled') == 'true'){
-         $('.btn').button('complete');
 
-         }
-         else{
-         $('.btn').button('uncomplete');
-         }*/
         console.log(data);
     });
+*/
 
 
 });

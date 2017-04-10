@@ -9,11 +9,11 @@
 </head>
 <body>
 <div layout:fragment="content">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-offset-3 col-lg-6 col-md-offset-2 col-md-8 col-sm-12 col-xs-12">
-                    <div th:fragment="content">
-                    <table  class="table table-striped">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-offset-3 col-lg-6 col-md-offset-2 col-md-8 col-sm-12 col-xs-12">
+                <div th:fragment="content">
+                    <table class="table table-striped">
                         <thead>
                         <tr>
 
@@ -26,26 +26,33 @@
                             <th>Email</th>
                             <th>Состояние</th>
                         </tr>
-                        <tr th:each="u: ${users}" th:attr="data-username=${u.username},data-email=${u.email},data-id=${u.id},data-enabled=${u.enabled}">
+                        <tr th:each="u: ${users}"
+                            th:attr="data-username=${u.username},data-email=${u.email},data-id=${u.id},data-enabled=${u.enabled}">
                             <td th:text="${u.id}"></td>
                             <td th:text="${u.username}"></td>
                             <td th:text="${u.email}"></td>
-                            <td><div class="btn btn-group btn btn-primary myCustomClass" data-complete-text="заблочен"
-                                     data-uncomplete-text="разблочен" data-status-text="СТАТУС" data-toggle="buttons">UPDATE</div></td>
+                            <td>
+                                <div class="myCustomClass">
+                                <input id="toggle-event" type="checkbox" data-toggle="toggle" data-on="Enabled"
+                                       data-off="Disabled"/>
+                                    <div id="console-event"></div>
+                                </div>
+                            </td>
+
                         </tr>
                         </tbody>
                     </table>
-                    </div>
                 </div>
             </div>
         </div>
+    </div>
     <script th:src="@{/js/frameworks/jquery-3.1.1.min.js}"></script>
     <script th:src="@{/js/updateUser.js}"></script>
-    <script th:src="@{/js/frameworks/bootstrap.min.js}"></script>
     <script th:src="@{/js/frameworks/bootstrap.min.js}"></script>
     <script th:src="@{/js/frameworks/bootstrap.js}"></script>
     <script th:src="@{/js/updateUser.js}"></script>
     <script th:src="@{/js/frameworks/plugins/bootstrap-form-validator.js}"></script>
+    <script th:src="@{/js/frameworks/plugins/bootstrap-toggle.min.js}"></script>
 </div>
 </body>
 </html>
