@@ -14,14 +14,11 @@ public class ChatRoom {
     @GeneratedValue
     private Long id;
 
-    @OneToMany(cascade = CascadeType.REMOVE)
-    private List<ChatMessage> chatMessages;
 
     @Column(name = "uniqueUsersChatKey")
     private String uniqueUsersChatKey;
 
     public ChatRoom() {
-
     }
 
     public ChatRoom(String uniqueUsersChatKey) {
@@ -38,10 +35,6 @@ public class ChatRoom {
 
     public Long getId() {
         return id;
-    }
-
-    public List<ChatMessage> getChatMessages() {
-        return chatMessages;
     }
 
 

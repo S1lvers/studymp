@@ -51,7 +51,7 @@ public class TestController {
         try {
             Integer pageNumber = Integer.parseInt(page);
             PageRequest request = new PageRequest(pageNumber, 5, Sort.Direction.DESC, "createDate");
-            String key = UniqueKeyGenerator.GenerateUserPairKey(userService.find(8L), userService.find(9L));
+            String key = UniqueKeyGenerator.GenerateUserPairKey(userService.find(9L), userService.find(8L));
             ChatRoom chatRoom = chatRoomService.findByUniqueUsersPairKey(key);
             if (chatRoom == null){
                 Long chatRoomId = chatRoomService.create(new ChatRoom(key));
