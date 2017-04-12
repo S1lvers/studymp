@@ -32,9 +32,19 @@
                             <td th:text="${u.username}"></td>
                             <td th:text="${u.email}"></td>
                             <td>
+                                <script>
+                                    $(document).ready(function (e) {
+                                        var formData = {
+                                            'enabled': attr(data-enabled)
+                                        };
+                                        if (formData.enabled = true) {
+                                            $('#toggle-event').click();
+                                        }
+                                    })
+                                </script>
                                 <div class="myCustomClass">
-                                <input id="toggle-event" type="checkbox" data-toggle="toggle" data-on="Enabled"
-                                       data-off="Disabled"/>
+                                    <input id="toggle-event" type="checkbox" data-toggle="toggle" data-on="Enabled"
+                                           data-off="Disabled"/>
                                     <div id="console-event"></div>
                                 </div>
                             </td>
