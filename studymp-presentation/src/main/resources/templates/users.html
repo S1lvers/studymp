@@ -32,12 +32,12 @@
                             <td th:text="${u.username}"></td>
                             <td th:text="${u.email}"></td>
                             <td>
-                                <script>
+                                <script th:inline="javascript">
                                     $(document).ready(function (e) {
                                         var formData = {
-                                            'enabled': attr(data-enabled)
+                                            'enabled': [[${u.enabled}]]
                                         };
-                                        if (formData.enabled = true) {
+                                        if (formData.enabled === true) {
                                             $('#toggle-event').click();
                                         }
                                     })
