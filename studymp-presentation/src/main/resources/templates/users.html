@@ -35,12 +35,15 @@
                                 <script th:inline="javascript">
                                     $(document).ready(function (e) {
                                         var formData = {
-                                            'enabled': [[${u.enabled}]]
+                                            'enabled': [[${u.enabled}]],
+                                            'username': [[${u.username}]],
+                                            'email': [[${u.email}]]
                                         };
                                         if (formData.enabled === true) {
-                                            $('#toggle-event').click();
+                                            $('#toggle-event').slideToggle()
                                         }
                                     })
+
                                 </script>
                                 <div class="myCustomClass">
                                     <input id="toggle-event" type="checkbox" data-toggle="toggle" data-on="Enabled"
