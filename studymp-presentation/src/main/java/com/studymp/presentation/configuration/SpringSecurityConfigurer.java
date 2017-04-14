@@ -37,15 +37,15 @@ public class SpringSecurityConfigurer extends WebSecurityConfigurerAdapter{
                         "/confirm-email.html",
                         "/change-password.html",
                         "/recoverypass.html",
-                        "/test/**").permitAll()
-                .antMatchers("/").hasAnyAuthority("USER", "ADMIN")
+                        "/test*").permitAll()
+                .antMatchers("/", "/user*", "/chat.html").hasAnyAuthority("USER", "ADMIN")
                 .antMatchers("/admin/**").hasAuthority("ADMIN")
                 .anyRequest().authenticated()
                 .and()
                 .formLogin().loginPage("/login.html").permitAll()
                 .and()
                 .logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/login.html");
-        //http.csrf().disable().authorizeRequests().anyRequest().permitAll();
+        /*http.csrf().disable().authorizeRequests().anyRequest().permitAll();*/
     }
 
 

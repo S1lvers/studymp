@@ -1,6 +1,6 @@
 package com.studymp.domain.utils.generators;
 
-import com.studymp.domain.services.ChatMessageServiceImpl;
+
 import com.studymp.persistence.entity.User;
 import org.apache.log4j.Logger;
 
@@ -13,7 +13,7 @@ import java.security.NoSuchAlgorithmException;
  */
 public class UniqueKeyGenerator {
 
-    private static final Logger LOGGER = Logger.getLogger(ChatMessageServiceImpl.class);
+    private static final Logger LOGGER = Logger.getLogger(UniqueKeyGenerator.class);
 
     public static String GenerateUserPairKey(User user1, User user2) {
 
