@@ -26,22 +26,13 @@ import java.util.List;
 @Controller
 @RequestMapping("/admin")
 public class UserGetController {
-    private static final Logger LOGGER = Logger.getLogger(UserPutController.class);
+    private static final Logger LOGGER = Logger.getLogger(UserGetController.class);
 
-    private final ResponseDtoFactory responseDtoFactory;
-    private final UserValidator userValidator;
-    private final UserMapping userMapping;
     private final UserService userService;
-    private final MailFactory mailFactory;
 
     @Autowired
-    public UserGetController(ResponseDtoFactory responseDtoFactory, UserValidator userValidator,
-                             UserMapping userMapping, UserService userService, MailFactory mailFactory) {
-        this.responseDtoFactory = responseDtoFactory;
-        this.userValidator = userValidator;
-        this.userMapping = userMapping;
+    public UserGetController(UserService userService) {
         this.userService = userService;
-        this.mailFactory = mailFactory;
     }
 
     @RequestMapping(

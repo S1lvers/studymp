@@ -1,20 +1,27 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="loyout" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
-    <meta charset="UTF-8" />
+    <meta charset="UTF-8"/>
     <title>Blog</title>
 </head>
 
 <body>
 <h1>Welcome to Spring MVC</h1>
 <b th:text="${execInfo.now.time}"></b>
+<div layout:fragment="content">
 
-<div sec:authorize="hasAuthority('ADMIN')">
-    This will only be displayed if authenticated user has role ROLE_ADMIN.
-</div>
+    <div sec:authorize="hasAuthority('ADMIN')">
+        This will only be displayed if authenticated user has role ROLE_ADMIN.
+    </div>
 
-<div sec:authorize="hasAuthority('USER')">
-    This will only be displayed if authenticated user has role USER.
+    <div sec:authorize="hasAuthority('USER')">
+        This will only be displayed if authenticated user has role USER.
+    </div>
+    <div class="btn btn-primary" id="testAjax">AJAX</div>
+    <script th:src="@{/js/test.js}"></script>
 </div>
 
 </body>
