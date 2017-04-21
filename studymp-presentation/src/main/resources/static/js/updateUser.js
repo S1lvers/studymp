@@ -11,7 +11,6 @@ $('.myCustomClass').click(function (e) {
 
     $(function() {
         $('#toggle-event').slideToggle(function() {
-            $('#console-event').html('Состояние: ' + $(this).prop('checked'));
             formData.enabled = $(this).prop('checked');
             $.ajax({
                 type: "PUT",
@@ -25,18 +24,5 @@ $('.myCustomClass').click(function (e) {
             });
         })
     });
-/*
-    $.ajax({
-        type: "PUT",
-        contentType: "application/json",
-        url: "user/update",
-        data: JSON.stringify(formData),
-        dataType: 'json'
-    }).done(function (data) {
-
-        console.log(data);
-    });
-*/
-
 
 });

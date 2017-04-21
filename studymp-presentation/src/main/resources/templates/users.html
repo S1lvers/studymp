@@ -36,19 +36,17 @@
                                     $(document).ready(function (e) {
                                         var formData = {
                                             'enabled': [[${u.enabled}]],
-                                            'username': [[${u.username}]],
-                                            'email': [[${u.email}]]
+                                            'username': [[${u.username}]]
                                         };
                                         if (formData.enabled === true) {
-                                            $('#toggle-event').slideToggle()
+                                                $('#toggle-event').bootstrapToggle('on')
                                         }
                                     })
 
                                 </script>
                                 <div class="myCustomClass">
-                                    <input id="toggle-event" type="checkbox" data-toggle="toggle" data-on="Enabled"
+                                    <input th:id="toggle-event" type="checkbox" data-toggle="toggle" data-on="Enabled"
                                            data-off="Disabled"/>
-                                    <div id="console-event"></div>
                                 </div>
                             </td>
 
