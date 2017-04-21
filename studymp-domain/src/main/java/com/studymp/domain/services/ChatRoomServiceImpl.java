@@ -54,4 +54,5 @@ public class ChatRoomServiceImpl implements ChatRoomService {
         chatRoomRepository.flush();
         return id;
     }
+
 }
