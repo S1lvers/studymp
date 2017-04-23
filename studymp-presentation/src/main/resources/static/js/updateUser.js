@@ -1,5 +1,4 @@
 $('.myCustomClass').click(function (e) {
-
     var papanya = $(this).parent().parent();
     var btn = $(this);
     var formData = {
@@ -10,8 +9,9 @@ $('.myCustomClass').click(function (e) {
     };
 
     $(function() {
-        $('#toggle-event').slideToggle(function() {
+        $('#'+formData.username+'-toggle').slideToggle(function() {
             formData.enabled = $(this).prop('checked');
+            console.log(formData.enabled);
             $.ajax({
                 type: "PUT",
                 contentType: "application/json",
@@ -19,7 +19,6 @@ $('.myCustomClass').click(function (e) {
                 data: JSON.stringify(formData),
                 dataType: 'json'
             }).done(function (data) {
-
                 console.log(data);
             });
         })

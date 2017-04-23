@@ -5,7 +5,7 @@ $('#testAjax').click(function (e) {
         url : "/user/chat?destination=username2",
         dataType : 'json',
         timeout : 100000
-    }).always(function (data) {
-        data.console.log()
+    }).done(function (data) {
+        window.location(url)
     });
 });

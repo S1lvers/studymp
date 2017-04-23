@@ -47,6 +47,7 @@ public class ChatController {
         this.responseDtoFactory = responseDtoFactory;
     }
 
+    // /chat?destination=username1
     @RequestMapping(
             value = "/chat",
             method = RequestMethod.GET)

@@ -34,18 +34,16 @@
                             <td>
                                 <script th:inline="javascript">
                                     $(document).ready(function (e) {
-                                        var formData = {
-                                            'enabled': [[${u.enabled}]],
-                                            'username': [[${u.username}]]
-                                        };
-                                        if (formData.enabled === true) {
-                                                $('#toggle-event').bootstrapToggle('on')
+                                        var username = [[${u.username}]];
+                                        var enabled = [[${u.enabled}]];
+                                        if (enabled === true) {
+                                                $('#'+username+'-toggle').bootstrapToggle('on')
                                         }
                                     })
 
                                 </script>
                                 <div class="myCustomClass">
-                                    <input th:id="toggle-event" type="checkbox" data-toggle="toggle" data-on="Enabled"
+                                    <input th:id="${u.username}+-toggle" type="checkbox" data-toggle="toggle" data-on="Enabled"
                                            data-off="Disabled"/>
                                 </div>
                             </td>
