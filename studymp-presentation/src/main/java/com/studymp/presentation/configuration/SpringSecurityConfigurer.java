@@ -32,20 +32,25 @@ public class SpringSecurityConfigurer extends WebSecurityConfigurerAdapter{
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable().authorizeRequests()
-                .antMatchers("/api/auth/**",
+                .antMatchers("/api/auth*",
                         "/registration.html",
                         "/confirm-email.html",
                         "/change-password.html",
                         "/recoverypass.html",
-                        "/test*").permitAll()
-                .antMatchers("/", "/user*", "/chat.html").hasAnyAuthority("USER", "ADMIN")
-                .antMatchers("/admin/**").hasAuthority("ADMIN")
+                        "/test*", "/app/chat", "/app/activeUsers", "/user/queue/messages", "/topic/active").permitAll()
+                .antMatchers("/", "/user*", "/chat.html", "/activeUsers").hasAnyAuthority("USER", "ADMIN")
+                .antMatchers("/admin*").hasAuthority("ADMIN")
                 .anyRequest().authenticated()
                 .and()
                 .formLogin().loginPage("/login.html").permitAll()
                 .and()
                 .logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/login.html");
-        /*http.csrf().disable().authorizeRequests().anyRequest().permitAll();*/
+        http.csrf().disable().authorizeRequests().anyRequest().permitAll();
+    }
+
+    @Override
+    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+        auth.authenticationProvider(authProvider());
     }
 
 
@@ -56,10 +61,6 @@ public class SpringSecurityConfigurer extends WebSecurityConfigurerAdapter{
         web.ignoring().antMatchers("/fonts/**");
     }
 
-    @Override
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.authenticationProvider(authProvider());
-    }
 
     @Override
     public UserDetailsService userDetailsServiceBean() throws Exception {
