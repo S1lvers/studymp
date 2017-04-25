@@ -1,10 +1,9 @@
 $('.myCustomClass').click(function (e) {
-    var papanya = $(this).parent().parent();
-    var btn = $(this);
+    var dataUser = $(this).parent().parent();
     var formData = {
-        'username': papanya.attr('data-username'),
-        'email': papanya.attr('data-email'),
-        'enabled': papanya.attr('data-enabled'),
+        'username': dataUser.attr('data-username'),
+        'email': dataUser.attr('data-email'),
+        'enabled': dataUser.attr('data-enabled'),
         'password': ""
     };
 

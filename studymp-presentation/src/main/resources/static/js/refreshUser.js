@@ -1,9 +1,9 @@
-$('.myCustomClass').click(function (e) {
-    $(function() {
-        $('#toggle-event').slideToggle(function() {
-            $('#console-event').html('Состояние: ' + $(this).prop('checked'));
-            formData.enabled = $(this).prop('checked');
-        })
-    });
+$(window).ready(function (e) {
+        var dataUser = $(this).parent().parent();
+        var username = dataUser.attr('data-username');
+        var enabled = dataUser.attr('data-enabled');
 
-});
+        if (enabled === true) {
+            $('#'+username+'-toggle').bootstrapToggle('on')
+        }
+    });
