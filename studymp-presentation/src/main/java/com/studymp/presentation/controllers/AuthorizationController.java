@@ -18,6 +18,7 @@ import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -68,7 +69,7 @@ public class AuthorizationController {
             method = RequestMethod.POST)
     public ResponseEntity changePassword(@RequestBody EmailDto emailDto) {
         Validation validation = emailValidator.validateReset(emailDto.email);
-        if (!validation.isValid()){
+        if (!validation.isValid()) {
             LOGGER.debug(String.format("Письмо с ссылкой на восстановление пароля на email %s не выслано", emailDto.email));
             LOGGER.debug(validation.getErrorMessage());
             return ResponseEntity.ok(responseDtoFactory.failure(validation.getErrorMessage()));
@@ -91,7 +92,7 @@ public class AuthorizationController {
             method = RequestMethod.PUT)
     public ResponseEntity changePassword(@RequestBody ChangePasswordDto changePasswordDto) {
         Validation validation = passwordValidator.validate(changePasswordDto.password);
-        if (!validation.isValid()){
+        if (!validation.isValid()) {
             LOGGER.error(String.format("Пароль состоит из менее 8 символов"));
             LOGGER.debug(validation.getErrorMessage());
             return ResponseEntity.ok(responseDtoFactory.failure(validation.getErrorMessage()));
@@ -102,7 +103,7 @@ public class AuthorizationController {
             user.setPassword(passwordEncoder.encode(changePasswordDto.password));
             userService.update(user);
             return ResponseEntity.ok(responseDtoFactory.success());
-        } catch (Exception e){
+        } catch (Exception e) {
             LOGGER.error(String.format("Не удалось обновить пароль, возможно устарел hash"));
             LOGGER.debug(e);
             return ResponseEntity.ok(responseDtoFactory.failure("Не удалось обновить пароль"));
@@ -119,11 +120,21 @@ public class AuthorizationController {
             String username = confirmEmailmpl.getUsernameForHash(confirmAccDto.hash);
             userService.approve(username);
             return ResponseEntity.ok(responseDtoFactory.success());
-        } catch (Exception e){
+        } catch (Exception e) {
             LOGGER.error(String.format("Не удалось обновить пароль, возможно устарел hash"));
             LOGGER.debug(e);
             return ResponseEntity.ok(responseDtoFactory.failure("Не удалось обновить пароль"));
         }
     }
 
+    @RequestMapping(
+            value = "/currentUser",
+            consumes = MediaType.APPLICATION_JSON_UTF8_VALUE,
+            produces = MediaType.APPLICATION_JSON_UTF8_VALUE,
+            method = RequestMethod.POST)
+    public ResponseEntity confirmAccount() {
+        String loggedUserName = SecurityContextHolder.getContext().getAuthentication().getName();
+        return ResponseEntity.ok(responseDtoFactory.success(loggedUserName));
+    }
 }
+
