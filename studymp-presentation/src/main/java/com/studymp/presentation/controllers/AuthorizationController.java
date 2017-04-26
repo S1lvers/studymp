@@ -126,15 +126,5 @@ public class AuthorizationController {
             return ResponseEntity.ok(responseDtoFactory.failure("Не удалось обновить пароль"));
         }
     }
-
-    @RequestMapping(
-            value = "/currentUser",
-            consumes = MediaType.APPLICATION_JSON_UTF8_VALUE,
-            produces = MediaType.APPLICATION_JSON_UTF8_VALUE,
-            method = RequestMethod.POST)
-    public ResponseEntity confirmAccount() {
-        String loggedUserName = SecurityContextHolder.getContext().getAuthentication().getName();
-        return ResponseEntity.ok(responseDtoFactory.success(loggedUserName));
-    }
 }
 
