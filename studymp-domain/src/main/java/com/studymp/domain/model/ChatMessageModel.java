@@ -1,5 +1,6 @@
 package com.studymp.domain.model;
 
+//Our POJO of chat message
 public class ChatMessageModel {
   
   private String recipient;

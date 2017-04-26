@@ -1,5 +1,7 @@
 package com.studymp.presentation.controllers;
 
+import com.studymp.domain.interfaces.ChatMessageMapper;
+import com.studymp.domain.interfaces.ChatMessageService;
 import com.studymp.domain.model.ChatMessageModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.Message;
@@ -15,10 +17,16 @@ import java.security.Principal;
 public class MessageController {
   
   private SimpMessagingTemplate template;
+
+  private final ChatMessageMapper chatMessageMapper;
+  private final ChatMessageService chatMessageService;
   
   @Autowired
-  public MessageController(SimpMessagingTemplate template) {
+  public MessageController(SimpMessagingTemplate template, ChatMessageMapper chatMessageMapper,
+                           ChatMessageService chatMessageService) {
     this.template = template;
+    this.chatMessageMapper = chatMessageMapper;
+    this.chatMessageService = chatMessageService;
   }
 
   @MessageMapping("/chat")
@@ -27,10 +35,10 @@ public class MessageController {
     String authedSender = principal.getName();
     chatMessageModel.setSender(authedSender);
     String recipient = chatMessageModel.getRecipient();
+    chatMessageService.create(chatMessageMapper.map(chatMessageModel));
     if (!authedSender.equals(recipient)) {
       template.convertAndSendToUser(authedSender, "/queue/messages", chatMessageModel);
     }
-    
     template.convertAndSendToUser(recipient, "/queue/messages", chatMessageModel);
   }
 
