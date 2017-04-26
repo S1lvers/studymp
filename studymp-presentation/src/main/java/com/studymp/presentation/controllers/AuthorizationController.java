@@ -126,5 +126,6 @@ public class AuthorizationController {
             return ResponseEntity.ok(responseDtoFactory.failure("Не удалось обновить пароль"));
         }
     }
+
 }
 

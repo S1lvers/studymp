@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en"
       xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <title>Default title for my pages</title>
@@ -42,8 +42,13 @@
                 </li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="login.html">Войти</a></li>
-                <li><a href="registration.html">Зарегистрироваться</a></li>
+                <div sec:authorize="hasAnyAuthority('USER','ADMIN')">
+                    <li><a href="#"><p th:text ="${#authentication.getPrincipal().getUsername()}"></p></a></li>
+                </div>
+                <div sec:authorize="hasAuthority('ROLE_ANONYMOUS')">
+                    <li><a href="login.html">Войти</a></li>
+                    <li><a href="registration.html">Зарегистрироваться</a></li>
+                </div>
             </ul>
         </div>
     </div>
