@@ -12,7 +12,7 @@
 <h1>Welcome to Spring MVC</h1>
 <b th:text="${execInfo.now.time}"></b>
 <div layout:fragment="content">
-
+    <link th:href="@{/css/chat.css}" rel="stylesheet" media="screen"/>
     <div sec:authorize="hasAuthority('ADMIN')">
         This will only be displayed if authenticated user has role ROLE_ADMIN.
     </div>
@@ -20,8 +20,17 @@
     <div sec:authorize="hasAuthority('USER')">
         This will only be displayed if authenticated user has role USER.
     </div>
+
+    <div>
+        <div id="userList">
+        </div>
+    </div>
+
     <div class="btn btn-primary" id="testAjax">AJAX</div>
     <script th:src="@{/js/test.js}"></script>
+    <script th:src="@{/js/frameworks/sockjs-0.3.4.js}"></script>
+    <script th:src="@{/js/frameworks/stomp.js}"></script>
+    <script th:src="@{/js/chat.js}"></script>
 </div>
 
 </body>

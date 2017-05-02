@@ -9,7 +9,7 @@ import java.util.List;
  * Created by qwerty on 11.04.2017.
  */
 public interface ChatRoomService {
-    ChatRoom find(Long id) throws Exception;
+    ChatRoom find(Long id) throws NotFoundException;
     ChatRoom findByUniqueUsersPairKey(String uniqueUsersPairKey) throws NotFoundException;
     Long create(ChatRoom chatRoom);
 }

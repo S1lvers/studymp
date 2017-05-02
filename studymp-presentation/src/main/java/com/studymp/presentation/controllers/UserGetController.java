@@ -1,12 +1,22 @@
 package com.studymp.presentation.controllers;
 
+import com.studymp.domain.interfaces.MailFactory;
 import com.studymp.domain.interfaces.UserService;
+import com.studymp.domain.interfaces.Validation;
 import com.studymp.persistence.entity.User;
+import com.studymp.presentation.dto.UserDto;
+import com.studymp.presentation.interfaces.ResponseDtoFactory;
+import com.studymp.presentation.interfaces.UserMapping;
+import com.studymp.presentation.interfaces.UserValidator;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 

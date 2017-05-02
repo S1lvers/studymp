@@ -29,9 +29,16 @@ public class UniqueKeyGenerator {
         byte[] txt2 = messageDigest.digest(user2.getEmail().getBytes());
 
         byte[] res = new byte[txt1.length > txt2.length ? txt1.length : txt2.length];
-        for (int i = 0; i < res.length; i++) {
-            res[i] = (byte) (txt1[i] ^ txt2[i % txt2.length]);
+        if(!user1.equals(user2)){
+            for (int i = 0; i < res.length; i++) {
+                res[i] = (byte) (txt1[i] ^ txt2[i % txt2.length]);
+            }
+        } else {
+            for (int i = 0; i < res.length; i++) {
+                res[i] = (byte) (txt1[i] ^ txt2[i % txt2.length + 1]);
+            }
         }
+
         return new String(res, StandardCharsets.UTF_16);
     }
 }

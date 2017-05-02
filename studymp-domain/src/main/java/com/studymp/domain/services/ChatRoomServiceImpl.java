@@ -5,6 +5,7 @@ import com.studymp.domain.interfaces.ChatRoomService;
 import com.studymp.persistence.entity.ChatRoom;
 import com.studymp.persistence.repositories.ChatRoomRepository;
 import org.apache.log4j.Logger;
+import org.aspectj.weaver.ast.Not;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
@@ -29,11 +30,11 @@ public class ChatRoomServiceImpl implements ChatRoomService {
     }
 
     @Override
-    public ChatRoom find(Long id) throws Exception {
+    public ChatRoom find(Long id) throws NotFoundException {
         ChatRoom result = chatRoomRepository.findOne(id);
         if (result == null) {
             LOGGER.error("Не удалось найти чат-комнату с id " + id);
-            throw new Exception();
+            throw new NotFoundException();
         }
         return result;
     }
@@ -44,7 +45,8 @@ public class ChatRoomServiceImpl implements ChatRoomService {
                 .findFirst();
         if (result.isPresent()) {
             return result.get();
-        } else return null;
+        } else
+            return null;
     }
 
     @Transactional
