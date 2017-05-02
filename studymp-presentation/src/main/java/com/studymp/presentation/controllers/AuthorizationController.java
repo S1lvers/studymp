@@ -112,22 +112,19 @@ public class AuthorizationController {
     }
 
     @RequestMapping(
-            value = "/confirm-email",
-            method = RequestMethod.GET)
-    public String confirmAccount(@RequestParam(value = "hash") String hash) {
             value = "/confirmAccount",
             consumes = MediaType.APPLICATION_JSON_UTF8_VALUE,
             produces = MediaType.APPLICATION_JSON_UTF8_VALUE,
             method = RequestMethod.POST)
     public ResponseEntity confirmAccount(@RequestBody ConfirmAccDto confirmAccDto) {
         try {
-            String username = confirmEmailmpl.getUsernameForHash(hash);
+            String username = confirmEmailmpl.getUsernameForHash(confirmAccDto.hash);
             userService.approve(username);
-            return "confirm-email";
+            return ResponseEntity.ok(responseDtoFactory.success());
         } catch (Exception e) {
             LOGGER.error(String.format("Не удалось обновить пароль, возможно устарел hash"));
             LOGGER.debug(e);
-            return "error";
+            return ResponseEntity.ok(responseDtoFactory.failure("Не удалось обновить пароль"));
         }
     }
 

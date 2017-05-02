@@ -44,10 +44,11 @@
                 </li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <div sec:authorize="hasAnyAuthority('USER','ADMIN')">
+                <div class="nav navbar-nav navbar-right" sec:authorize="hasAnyAuthority('USER','ADMIN')">
                     <li><a href="#"><p th:text ="${#authentication.getPrincipal().getUsername()}"></p></a></li>
+                    <li><a href="/logout">Выйти</a></li>
                 </div>
-                <div sec:authorize="hasAuthority('ROLE_ANONYMOUS')">
+                <div class="nav navbar-nav navbar-right" sec:authorize="hasAuthority('ROLE_ANONYMOUS')">
                     <li><a href="login.html">Войти</a></li>
                     <li><a href="registration.html">Зарегистрироваться</a></li>
                 </div>
