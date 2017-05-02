@@ -15,12 +15,15 @@ import static org.jooq.lambda.Seq.seq;
 @Component
 public class PasswordValidatorImpl implements PasswordValidator {
 
+    private static final String regular = "(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9@#$%]).{8,}";
+
     @Override
     public Validation validate(String password) {
         return new GroupValidation(
                 new FailCondition(
-                        () -> password.length() < 8,
-                        "Пароль должен быть больше 8 символов"
+                        () -> password.matches(regular),
+                        "Пароль должен содержать не менее 8 символов," +
+                                " из которых минимум 1 спецсимвол или цифра и минимум 1 латинская буква"
                 )
         );
     }
