@@ -20,13 +20,95 @@
     <div sec:authorize="hasAuthority('USER')">
         This will only be displayed if authenticated user has role USER.
     </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-offset-3 col-lg-6 col-md-offset-2 col-md-8 col-sm-12">
+                <div class="text-block callout callout-info text-center" style="margin-bottom: +40px;">
+                    <p>Добро пожаловать! <strong>Все сделки защищены гарантом CashPass!</strong></p>
+                </div>
 
-    <div>
-        <div id="userList">
+                <table class="table">
+                    <legend align="center">Услуги</legend>
+
+                    <thead>
+                    <tr>
+                        <th><p align="center" >Предметы</p></th>
+                        <th><p align="center" >Предметы</p></th>
+                    </tr>
+                    </thead>
+
+                    <tbody>
+                    <tr>
+                        <td>
+                            <div class="panel panel-primary" style="max-width: 330px; max-height: 125px">
+                                <div class="panel-heading" style="max-height: 50px">
+                                    <h3 class="panel-title">
+                                        <p class=" text-center"><big><a href="discipline.html">Матан</a></big></p>
+                                    </h3>
+                                </div>
+                                <div class="panel-body">
+                                    <p class=""><a href="#">Курсовые работы</a>,
+                                        <a href="#">Типовые расчеты</a></p>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="panel panel-primary" style="max-width: 330px; max-height: 125px">
+                                <div class="panel-heading" style="max-height: 50px">
+                                    <h3 class="panel-title">
+                                        <p class=" text-center"><big><a href="discipline.html">Матан</a></big></p>
+                                    </h3>
+                                </div>
+                                <div class="panel-body">
+                                    <p class=""><a href="#">Курсовые работы</a>,
+                                        <a href="#">Типовые расчеты</a></p>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <div class="panel panel-primary" style="max-width: 330px; max-height: 125px">
+                                <div class="panel-heading" style="max-height: 50px">
+                                    <h3 class="panel-title">
+                                        <p class=" text-center"><big><a href="discipline.html">Матан</a></big></p>
+                                    </h3>
+                                </div>
+                                <div class="panel-body">
+                                    <p class=""><a href="#">Курсовые работы</a>,
+                                        <a href="#">Типовые расчеты</a></p>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="panel panel-primary" style="max-width: 330px; max-height: 125px">
+                                <div class="panel-heading" style="max-height: 50px">
+                                    <h3 class="panel-title">
+                                        <p class=" text-center"><big><a href="discipline.html">Матан</a></big></p>
+                                    </h3>
+                                </div>
+                                <div class="panel-body">
+                                    <p class=""><a href="#">Курсовые работы</a>,
+                                        <a href="#">Типовые расчеты</a></p>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    </tbody>
+
+                </table>
+
+                <div>
+                    <div id="userList">
+                    </div>
+                </div>
+                <div class="btn btn-primary" id="testAjax">AJAX</div>
+            </div>
         </div>
     </div>
 
-    <div class="btn btn-primary" id="testAjax">AJAX</div>
+
     <script th:src="@{/js/test.js}"></script>
     <script th:src="@{/js/frameworks/sockjs-0.3.4.js}"></script>
     <script th:src="@{/js/frameworks/stomp.js}"></script>
