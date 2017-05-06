@@ -6,7 +6,6 @@ import com.studymp.domain.interfaces.EmailHashLink;
 import com.studymp.domain.interfaces.EmailSender;
 import com.studymp.domain.utils.generators.CharSequenceGenerator;
 import com.studymp.persistence.entity.User;
-import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -28,7 +27,7 @@ public class ConfirmEmailImpl implements EmailHashLink {
     private static final Integer MILLISECONDS_IN_MINUTE = 60000;
 
     private List<UserAssociation> userAssociationList = new ArrayList<>();
-    private static final Logger LOGGER = LogManager.getLogger(ResetPasswordImpl.class);
+    private static final Logger LOGGER = Logger.getLogger(ResetPasswordImpl.class);
 
     private final EmailSender emailSender;
 

@@ -9,14 +9,11 @@ import com.studymp.persistence.entity.ChatMessage;
 import com.studymp.persistence.entity.ChatRoom;
 import com.studymp.persistence.entity.User;
 import com.studymp.presentation.dto.MessageDto;
-import com.studymp.presentation.dto.UserDto;
 import com.studymp.presentation.interfaces.ResponseDtoFactory;
 import org.apache.log4j.Logger;
-import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -24,7 +21,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
-import java.util.HashSet;
 import java.util.List;
 
 /**

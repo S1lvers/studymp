@@ -3,8 +3,7 @@ package com.studymp.presentation.services;
 import com.studymp.domain.interfaces.UserService;
 import com.studymp.persistence.entity.Role;
 import com.studymp.persistence.entity.User;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -24,7 +23,7 @@ import java.util.Set;
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(UserDetailsServiceImpl.class);
+    private static final Logger LOGGER = Logger.getLogger(UserDetailsServiceImpl.class);
 
     @Autowired
     private LoginAttemptService loginAttemptService;
@@ -49,10 +48,11 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         try {
             User user = userService.findByUsername(username);
             if (user == null) {
-                LOGGER.error("User not found with the provided username");
+                LOGGER.info("User not found with the provided username");
                 return null;
             }
-            LOGGER.error(" User from username " + user.toString());
+            LOGGER.info("User from username " + user.getUsername());
+            LOGGER.debug("User from username " + user.getUsername());
             return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(),
                     user.isEnabled(), true, true, true, getAuthorities(user));
         }

@@ -1,7 +1,6 @@
 package com.studymp.domain.configurations;
 
 import com.studymp.domain.interfaces.EmailConfiguration;
-import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.support.PropertiesLoaderUtils;
@@ -15,7 +14,7 @@ import java.util.Properties;
  */
 @Component(value = "confirmEmail")
 public class ConfirmEmailConfiguration implements EmailConfiguration {
-    private static final Logger LOGGER = LogManager.getLogger(ConfirmEmailConfiguration.class);
+    private static final Logger LOGGER = Logger.getLogger(ConfirmEmailConfiguration.class);
 
     private static final String CONFIG_PATH = "/confirmMail.properties";
     private static final String CONFIRM_EMAIL_URL = "url.confirm";

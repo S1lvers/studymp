@@ -12,21 +12,15 @@ import com.studymp.presentation.dto.EmailDto;
 import com.studymp.presentation.interfaces.EmailValidator;
 import com.studymp.presentation.interfaces.PasswordValidator;
 import com.studymp.presentation.interfaces.ResponseDtoFactory;
-import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
-import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-
-import java.io.UnsupportedEncodingException;
-import java.net.URLDecoder;
 
 /**
  * Created by qwerty on 20.03.2017.
@@ -34,7 +28,7 @@ import java.net.URLDecoder;
 @Controller
 @RequestMapping("/api/auth")
 public class AuthorizationController {
-    private static final Logger LOGGER = LogManager.getLogger(AuthorizationController.class);
+    private static final Logger LOGGER = Logger.getLogger(AuthorizationController.class);
 
     private final ResponseDtoFactory responseDtoFactory;
     private final MailFactory mailFactory;
