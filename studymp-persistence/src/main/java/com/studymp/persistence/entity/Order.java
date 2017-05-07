@@ -11,22 +11,22 @@ import java.util.DoubleSummaryStatistics;
 @Table(name = "studymp_order")
 public class Order {
     @Id
-    @Column(name = "order_id", nullable = false)
+    @Column(name = "order_id", nullable = false, unique = true)
     @GeneratedValue
     private Long id;
 
-    @Column(name = "order_name")
+    @Column(name = "order_name", nullable = false)
     private String name;
 
     @Column(name = "order_create_date")
     private Date createDate;
 
     @ManyToOne
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "user_id", nullable = false)
     private User creator;
 
     @ManyToOne
-    @JoinColumn(name = "section_id")
+    @JoinColumn(name = "section_id", nullable = false)
     private Section section;
 
     @Column(name = "order_description")
