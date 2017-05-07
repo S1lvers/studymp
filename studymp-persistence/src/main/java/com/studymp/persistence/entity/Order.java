@@ -2,51 +2,51 @@ package com.studymp.persistence.entity;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.DoubleSummaryStatistics;
 
 /**
  * Created by qwerty on 07.05.2017.
  */
 @Entity
-@Table(name = "order")
+@Table(name = "studymp_order")
 public class Order {
     @Id
     @Column(name = "order_id", nullable = false)
     @GeneratedValue
     private Long id;
 
-    @Column(name = "order_name", nullable = false)
+    @Column(name = "order_name")
     private String name;
 
     @Column(name = "order_create_date")
-    private Date date;
+    private Date createDate;
 
     @ManyToOne
-    @JoinColumn(name = "user_id", nullable = false)
+    @JoinColumn(name = "user_id")
     private User creator;
 
     @ManyToOne
-    @JoinColumn(name = "section_id", nullable = false)
+    @JoinColumn(name = "section_id")
     private Section section;
 
     @Column(name = "order_description")
     private String description;
 
-    @Column(name = "order_price", nullable = false)
-    private double price;
+    @Column(name = "order_price")
+    private Double price;
 
     @ManyToOne
-    @JoinColumn(name = "user_id")
     private User executor;
 
     @Column(name = "order_archive_date")
-    private Date archive;
+    private Date archiveDate;
 
     public Order() {
     }
 
-    public Order(String name, Date date, User creator, Section section, String description, double price) {
+    public Order(String name, Date createDate, User creator, Section section, String description, Double price) {
         this.name = name;
-        this.date = date;
+        this.createDate = createDate;
         this.creator = creator;
         this.section = section;
         this.description = description;
@@ -62,11 +62,11 @@ public class Order {
     }
 
     public Date getDate() {
-        return date;
+        return createDate;
     }
 
-    public void setDate(Date date) {
-        this.date = date;
+    public void setDate(Date createDate) {
+        this.createDate = createDate;
     }
 
     public User getCreator() {
@@ -93,11 +93,11 @@ public class Order {
         this.description = description;
     }
 
-    public double getPrice() {
+    public Double getPrice() {
         return price;
     }
 
-    public void setPrice(double price) {
+    public void setPrice(Double price) {
         this.price = price;
     }
 
@@ -110,11 +110,11 @@ public class Order {
     }
 
     public Date getArchive() {
-        return archive;
+        return archiveDate;
     }
 
-    public void setArchive(Date archive) {
-        this.archive = archive;
+    public void setArchive(Date archiveDate) {
+        this.archiveDate = archiveDate;
     }
 
     public Long getId() {
