@@ -41,9 +41,9 @@ public class PersistenceJPAConfig{
     public DriverManagerDataSource dataSource(){
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setDriverClassName("com.mysql.jdbc.Driver");
-        dataSource.setUrl("jdbc:mysql://localhost:3306/marketplace");
+        dataSource.setUrl("jdbc:mysql://localhost:3307/marketplace");
         dataSource.setUsername("root");
-        dataSource.setPassword("hunter");
+        dataSource.setPassword("admin");
         return dataSource;
     }
 

@@ -5,8 +5,7 @@ $('#registration-form').submit(function(e) {
         'email': $('input[id=email]').val(),
         'password': $('input[id=password]').val()
     };
-
-
+    
     $.ajax({
         type: "PUT",
         contentType: "application/json",

@@ -7,7 +7,7 @@ import com.studymp.persistence.entity.User;
 import com.studymp.presentation.dto.UserDto;
 import com.studymp.presentation.interfaces.ResponseDtoFactory;
 import com.studymp.presentation.interfaces.UserMapping;
-import com.studymp.presentation.interfaces.UserValidator;
+import com.studymp.presentation.interfaces.UserValidator;;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -50,7 +50,7 @@ public class UserPutController {
     public ResponseEntity putUser(@RequestBody UserDto userDto){
         Validation validation = userValidator.validatePutDto(userDto);
         if (!validation.isValid()){
-            LOGGER.debug("Пользователь не создан");
+            LOGGER.info("Пользователь не создан");
             LOGGER.debug(validation.getErrorMessage());
             return ResponseEntity.ok(responseDtoFactory.failure(validation.getErrorMessage()));
         }

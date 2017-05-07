@@ -1,6 +1,5 @@
 package com.studymp.domain.services;
 
-import com.studymp.domain.interfaces.EmailConfiguration;
 import com.studymp.domain.interfaces.EmailSender;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +18,7 @@ import javax.mail.internet.MimeMessage;
 
 @Component
 public class EmailSenderImpl implements EmailSender {
-    private static final Logger LOGGER = Logger.getLogger(EmailSenderImpl.class);
+    private static final Logger LOGGER = Logger.getLogger(EmailSenderImpl.class.getName());
     /**
      * Send email using GMail SMTP server.
      *
@@ -46,6 +45,8 @@ public class EmailSenderImpl implements EmailSender {
     public void Send(String recipientEmail, String ccEmail, String title, String messageContent,
                      String SMTP_HOST, String SMTP_PORT, String SMTP_USERNAME, String SMTP_PASSWORD) throws Exception{
 
+        System.setProperty("https.protocols", "TLSv1.1");
+
         final Properties config = new Properties();
         config.put("mail.transport.protocol", "smtp");
         config.put("mail.smtp.auth", "true");
@@ -67,9 +68,9 @@ public class EmailSenderImpl implements EmailSender {
             message.setSubject(title);
             message.setText(messageContent, "utf-8", "html");
             message.setSentDate(new Date());
-            LOGGER.debug(String.format("Trying to send message to %s ...", recipientEmail));
+            LOGGER.info(String.format("Trying to send message to %s ...", recipientEmail));
             Transport.send(message);
-            LOGGER.debug("Email was successfully sent!");
+            LOGGER.info("Email was successfully sent!");
         } catch (MessagingException ex) {
             LOGGER.debug(ex);
             LOGGER.error("An error occurred while trying to send message  ");
