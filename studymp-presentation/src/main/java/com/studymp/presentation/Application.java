@@ -1,6 +1,5 @@
 package com.studymp.presentation;
 
-import org.apache.log4j.Logger;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
@@ -17,7 +16,6 @@ import java.io.IOException;
 @EntityScan(basePackages = "com.studymp")
 @EnableGlobalMethodSecurity(securedEnabled = true)
 public class Application {
-    private final static Logger LOGGER = Logger.getLogger(Application.class);
     public static void main(String[] args) throws IOException {
         SpringApplication.run(Application.class, args);
     }
