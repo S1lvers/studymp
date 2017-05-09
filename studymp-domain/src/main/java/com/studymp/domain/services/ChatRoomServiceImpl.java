@@ -5,7 +5,6 @@ import com.studymp.domain.interfaces.ChatRoomService;
 import com.studymp.persistence.entity.ChatRoom;
 import com.studymp.persistence.repositories.ChatRoomRepository;
 import org.apache.log4j.Logger;
-import org.aspectj.weaver.ast.Not;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;

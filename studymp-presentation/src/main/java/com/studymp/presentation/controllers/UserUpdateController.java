@@ -48,6 +48,7 @@ public class UserUpdateController {
                 return ResponseEntity.ok(responseDtoFactory.success(user.isEnabled()));
             } catch (Exception e){
                 LOGGER.error(String.format("Не удалось обновить пользоватля %s", userDto.username));
+                LOGGER.debug(e);
                 return ResponseEntity.ok(responseDtoFactory.failure(String.format("Не удалось обновить пользоватля %s", userDto.username)));
             }
         }
