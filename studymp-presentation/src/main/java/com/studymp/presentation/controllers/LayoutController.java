@@ -44,6 +44,12 @@ public class LayoutController {
         return "index";
     }
 
-
+    @RequestMapping(
+            value = "/confirm-email.html",
+            method = RequestMethod.GET
+    )
+    public String getConfirmPage(Model model){
+        return "confirm-email";
+    }
 
 }

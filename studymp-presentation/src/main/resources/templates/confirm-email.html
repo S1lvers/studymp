@@ -12,16 +12,17 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-offset-3 col-lg-6 col-md-offset-2 col-md-8 col-sm-12">
-                <legend>Вы зарегистрированы!</legend>
-                <script type="text/javascript">
-                    setTimeout(function() {
-                        document.location.href = "../static/login.html";
-                    },1500);
+                <div th:fragment="content">
+                    <legend>Вы зарегистрированы!</legend>
+                    <script th:inline="javascript">
+                        setTimeout(function () {
+                            document.location.href = "../static/login.html";
+                        }, 1500);
                     </script>
+                </div>
             </div>
         </div>
     </div>
-
     <script th:src="@{/static/js/frameworks/plugins/bootstrap-form-validator.js}"></script>
 
 </div>
