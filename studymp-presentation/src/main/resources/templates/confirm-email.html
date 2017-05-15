@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html lang="en"
       xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
@@ -9,22 +8,24 @@
 </head>
 <body>
 <div layout:fragment="content">
+
     <div class="container">
         <div class="row">
             <div class="col-lg-offset-3 col-lg-6 col-md-offset-2 col-md-8 col-sm-12">
+                <div id="error_wrapper">
+                </div>
+                <div id="success_wrapper">
+                </div>
                 <div th:fragment="content">
-                    <legend>Вы зарегистрированы!</legend>
-                    <script th:inline="javascript">
-                        setTimeout(function () {
-                            document.location.href = "../static/login.html";
-                        }, 1500);
-                    </script>
+
+
+
                 </div>
             </div>
         </div>
     </div>
-    <script th:src="@{/static/js/frameworks/plugins/bootstrap-form-validator.js}"></script>
 
+    <script th:src="@{/js/confirm-email.js}"></script>
 </div>
 </body>
 

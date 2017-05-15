@@ -118,7 +118,7 @@ public class AuthorizationController {
         } catch (Exception e) {
             LOGGER.error(String.format("Не удалось обновить пароль, возможно устарел hash"));
             LOGGER.debug(e);
-            return ResponseEntity.ok(responseDtoFactory.failure("Не удалось обновить пароль"));
+            return ResponseEntity.ok(responseDtoFactory.failure("Не удалось подтвердить email"));
         }
     }
 

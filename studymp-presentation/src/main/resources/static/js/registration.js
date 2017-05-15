@@ -5,16 +5,7 @@ $('#registration-form').submit(function (e) {
         'email': $('input[id=email]').val(),
         'password': $('input[id=password]').val()
     };
-    /*   $('#error_wrapper').replaceWith('<div class="form-group">' +
-     '<div class="adjust"><div class="loader2">' + '</div>' + '</div>' + '</div>');
-     setTimeout(function() {
-     $('#error_wrapper').replaceWith('<div class="form-group">' +
-     '<span class="form-group" id="error_area"> Сообщение отправлено на почту </span>' +
-     '</div>');
-     },1000);
-     setTimeout(function() {
-     document.location.href = "login.html";
-     },1000);*/
+
     $.ajax({
         type: "PUT",
         contentType: "application/json",
@@ -28,7 +19,7 @@ $('#registration-form').submit(function (e) {
                     '</div>');
             }
             else {
-                $('#error_wrapper').replaceWith('<div class="form-group">' +
+                $('#toggle_wrapper').replaceWith('<div class="form-group">' +
                     '<div class="adjust"><div class="loader2">' + '</div>' + '</div>' + '</div>');
                 setTimeout(function () {
                     $('#success_wrapper').replaceWith('<div class="form-group">' +
