@@ -7,7 +7,6 @@
     <meta charset="UTF-8"/>
     <title>Blog</title>
 </head>
-
 <body>
 <h1>Welcome to Spring MVC</h1>
 <b th:text="${execInfo.now.time}"></b>
@@ -16,7 +15,6 @@
     <div sec:authorize="hasAuthority('ADMIN')">
         This will only be displayed if authenticated user has role ROLE_ADMIN.
     </div>
-
     <div sec:authorize="hasAuthority('USER')">
         This will only be displayed if authenticated user has role USER.
     </div>
@@ -26,17 +24,14 @@
                 <div class="text-block callout callout-info text-center" style="margin-bottom: +40px;">
                     <p>Добро пожаловать! <strong>Все сделки защищены гарантом CashPass!</strong></p>
                 </div>
-
                 <table class="table">
                     <legend align="center">Услуги</legend>
-
                     <thead>
                     <tr>
                         <th><p align="center" >Предметы</p></th>
                         <th><p align="center" >Предметы</p></th>
                     </tr>
                     </thead>
-
                     <tbody>
                     <tr>
                         <td>
@@ -66,7 +61,6 @@
                             </div>
                         </td>
                     </tr>
-
                     <tr>
                         <td>
                             <div class="panel panel-primary" style="max-width: 330px; max-height: 125px">
@@ -96,9 +90,7 @@
                         </td>
                     </tr>
                     </tbody>
-
                 </table>
-
                 <div>
                     <div id="userList">
                     </div>
@@ -107,8 +99,6 @@
             </div>
         </div>
     </div>
-
-
     <script th:src="@{/js/test.js}"></script>
     <script th:src="@{/js/frameworks/sockjs-0.3.4.js}"></script>
     <script th:src="@{/js/frameworks/stomp.js}"></script>

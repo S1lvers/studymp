@@ -5,7 +5,8 @@ $('#registration-form').submit(function (e) {
         'email': $('input[id=email]').val(),
         'password': $('input[id=password]').val()
     };
-
+    $('.toggle_wrapper').replaceWith('<div class="form-group">' +
+        '<div class="adjust"><div class="loader2">' + '</div>' + '</div>' + '</div>');
     $.ajax({
         type: "PUT",
         contentType: "application/json",
@@ -14,15 +15,14 @@ $('#registration-form').submit(function (e) {
         dataType: 'json',
         success: function (data) {
             if (!data.status) {
-                $('#error_wrapper').replaceWith('<div class="form-group">' + '<span style="color: red" class="form-group" id="error_area">' +
+                $('.error_wrapper').replaceWith('<div class="form-group">' + '<span style="color: red" ' +
+                    'class="form-group" id="error_area">' +
                     data.error + '</span>' +
                     '</div>');
             }
             else {
-                $('#toggle_wrapper').replaceWith('<div class="form-group">' +
-                    '<div class="adjust"><div class="loader2">' + '</div>' + '</div>' + '</div>');
                 setTimeout(function () {
-                    $('#success_wrapper').replaceWith('<div class="form-group">' +
+                    $('.success_wrapper').replaceWith('<div class="form-group">' +
                         '<span class="form-group" id="success_area">' + 'Сообщение отправлено на почту' + '</span>' +
                         '</div>');
                 }, 1000);
