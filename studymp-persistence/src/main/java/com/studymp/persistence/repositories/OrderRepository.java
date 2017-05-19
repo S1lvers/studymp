@@ -14,5 +14,5 @@ import java.util.List;
  */
 public interface OrderRepository extends JpaRepository<Order, Long> {
     List<Order> findByNameAndCreator(String name, User creator);
-    Page<Order> findBySection(Section section, Pageable pageable);
+    List<Order> findBySection(Section section);
 }

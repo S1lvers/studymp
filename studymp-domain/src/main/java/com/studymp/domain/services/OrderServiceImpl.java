@@ -74,8 +74,8 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public List<Order> findBySectionWithPageable(Section section, Pageable pageable) throws Exception {
-        List<Order> result = orderRepository.findBySection(section, pageable).getContent();
+    public List<Order> findBySection(Section section) throws Exception {
+        List<Order> result = orderRepository.findBySection(section);
         return result;
     }
 }

@@ -28,13 +28,6 @@ public class LayoutController {
         return "recoverypass";
     }
 
-    @RequestMapping(
-            value = "/discipline.html",
-            method = RequestMethod.GET
-    )
-    public String getDisciplinePage(Model model){
-        return "discipline";
-    }
 
     @RequestMapping(
             value = "/confirm-email.html",

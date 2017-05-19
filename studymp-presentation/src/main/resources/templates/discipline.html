@@ -63,30 +63,32 @@
                         });
                     });
                 </script>
-                <div class="text-block callout callout-info text-center" style="margin-bottom: +40px;">
-                    <p><strong>Если вас интересует Математический Анализ, то вы обратились по адресу!</strong></p>
-                </div>
-                <div class="clearfix">
-                    <div class="showcase-switch">
-                        <a href="#" class="btn btn-primary btn pull-right" id="order">Предложить услугу</a>
-                    </div>
-                    <div>
-                        <div class="form-group">
-                            <div class="checkbox">
-                                <label>
-                                    <input type="checkbox" name="online" class="filter-input">
-                                    Продавцы
-                                    <span class="label label-success">online</span></input>
-                                </label>
-                            </div>
-                        </div>
-                    </div>
-                </div>
 
-                <ul class="nav nav-tabs" role="tablist" id="myTabExample">
-                    <li class="active"><a href="#homeExample" role="tab" data-toggle="tab">Курсовые работы</a></li>
-                    <li><a href="#questionsExample" role="tab" data-toggle="tab">Типовые расчеты</a></li>
-                </ul>
+                <div th:fragment="content">
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            Предмет
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <th>Здесь вы можете выбрать дисциплину</th>
+                        </tr>
+                        <tr th:each="o: ${orders}">
+                            <td>
+                                <div class="panel panel-primary" >
+                                    <div class="panel-heading" >
+                                        <h3 class="panel-title">
+                                            <p><a href="discipline.html" th:text="${o.name}"></a></p>
+                                        </h3>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
 
                 <div class="tab-content">
                     <div class="tab-pane active" id="homeExample">

@@ -18,5 +18,5 @@ public interface OrderService {
     Long create(Order order);
     void update(Order order);
     void delete(Long id);
-    List<Order> findBySectionWithPageable(Section section, Pageable pageable) throws Exception;
+    List<Order> findBySection(Section section) throws Exception;
 }
