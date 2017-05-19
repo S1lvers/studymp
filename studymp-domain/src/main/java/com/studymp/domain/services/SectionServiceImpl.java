@@ -10,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 import static org.jooq.lambda.Seq.seq;
 
 /**
@@ -38,12 +40,12 @@ public class SectionServiceImpl implements SectionService {
     }
 
     @Override
-    public Section findByName(String name) throws Exception {
+    public Section findByName(String name) throws NotFoundException {
         Section result = seq(sectionRepository.findByName(name))
                 .findFirst()
                 .orElseThrow(() -> {
                     LOGGER.error("Не удалось найти секцию с именем " + name);
-                    return new Exception();
+                    return new NotFoundException();
                 });
         return result;
     }
@@ -75,5 +77,10 @@ public class SectionServiceImpl implements SectionService {
     public void delete(Long id) {
         sectionRepository.delete(id);
         sectionRepository.flush();
+    }
+
+    @Override
+    public List<Section> findAll() {
+       return sectionRepository.findAll();
     }
 }

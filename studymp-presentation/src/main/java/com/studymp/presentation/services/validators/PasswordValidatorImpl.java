@@ -1,6 +1,7 @@
 package com.studymp.presentation.services.validators;
 
 import com.studymp.domain.interfaces.Validation;
+import com.studymp.domain.utils.CustomHtmlUtils;
 import com.studymp.domain.utils.validation.DependantValidation;
 import com.studymp.domain.utils.validation.FailCondition;
 import com.studymp.domain.utils.validation.GroupValidation;
@@ -23,7 +24,11 @@ public class PasswordValidatorImpl implements PasswordValidator {
                 new FailCondition(
                         () -> password.matches(regular),
                         "Пароль должен содержать не менее 8 символов," +
-                                " из которых минимум 1 спецсимвол или цифра и минимум 1 латинская буква"
+                                " из которых минимум 1 цифра и минимум 1 латинская буква"
+                ),
+                new FailCondition(
+                        () -> CustomHtmlUtils.isHtml(password),
+                        "Запрещено использование спецсимволов типа <> </> <> и тд"
                 )
         );
     }

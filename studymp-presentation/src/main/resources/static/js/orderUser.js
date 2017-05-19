@@ -4,22 +4,23 @@
 $('#order-form').submit(function (e) {
     e.preventDefault();
     var formData = {
-        'username': $('input[id=username]').val(),
-        'subject': $('input[id=subject]').val(),
+        'name': $('input[id=subject]').val(),
         'description': $('input[id=description]').val(),
-        'cost': $('input[id=cost]').val()
+        'cost': $('input[id=cost]').val(),
+        'section' : "Математический Анализ"
     };
-    $('#course_wrapper').append('<div class="form-group">' + '<span style="color: red" ' +
-        'class="form-group">' +
-        'formData.subject' + '</span>' +
-        '</div>');
-/*    $.ajax({
+    $.ajax({
         type: "PUT",
         contentType: "application/json",
-        url: "",
+        url: "/user/order/create",
         data: JSON.stringify(formData),
         dataType: 'json'
     }).done(function (data) {
         console.log(data);
-    })*/
+    })
+    /*$('#course_wrapper').append('<div class="form-group">' + '<span style="color: red" ' +
+        'class="form-group">' +
+        'formData.subject' + '</span>' +
+        '</div>');*/
+
 });

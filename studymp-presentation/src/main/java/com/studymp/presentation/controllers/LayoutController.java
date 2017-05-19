@@ -37,14 +37,6 @@ public class LayoutController {
     }
 
     @RequestMapping(
-            value = "/index.html",
-            method = RequestMethod.GET
-    )
-    public String getIndexPage(Model model){
-        return "index";
-    }
-
-    @RequestMapping(
             value = "/confirm-email.html",
             method = RequestMethod.GET
     )

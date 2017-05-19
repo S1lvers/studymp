@@ -1,5 +1,6 @@
 package com.studymp.presentation.services.validators;
 
+import com.studymp.domain.utils.CustomHtmlUtils;
 import com.studymp.domain.utils.validation.DependantValidation;
 import com.studymp.domain.utils.validation.FailCondition;
 import com.studymp.domain.utils.validation.GroupValidation;
@@ -50,6 +51,16 @@ public class UserValidatorImpl implements UserValidator {
                         new FailCondition(
                                 () -> seq(userRepository.findByUsername(userDto.username)).findFirst().isPresent(),
                                 "Пользователь с таким юзернеймом уже существует"
+                        )
+                ),
+                new DependantValidation(
+                        new FailCondition(
+                                () -> CustomHtmlUtils.isHtml(userDto.password),
+                                "Запрещено использование спецсимволов в пароле по типу <> </> <> и тд"
+                        ),
+                        new FailCondition(
+                                () -> CustomHtmlUtils.isHtml(userDto.username),
+                                "Запрещено использование спецсимволов в логине типа <> </> <> и тд"
                         )
                 )
         );
