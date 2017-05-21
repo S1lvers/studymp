@@ -80,7 +80,7 @@
                                 <div class="panel panel-primary" >
                                     <div class="panel-heading" >
                                         <h3 class="panel-title">
-                                            <p><a href="discipline.html" th:text="${o.name}"></a></p>
+                                            <p><a th:href="@{order(id=${o.id})}" th:text="${o.name}"></a></p>
                                         </h3>
                                     </div>
                                 </div>

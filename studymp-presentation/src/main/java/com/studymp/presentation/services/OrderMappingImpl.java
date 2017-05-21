@@ -35,4 +35,12 @@ public class OrderMappingImpl implements OrderMapping {
         Order order = new Order(orderDto.name, new Date(), creatorUser, section, orderDto.description, orderDto.cost);
         return order;
     }
+
+    @Override
+    public Order update(Order order, OrderDto orderDto) {
+        order.setDescription(orderDto.description);
+        order.setName(orderDto.name);
+        order.setCost(orderDto.cost);
+        return order;
+    }
 }

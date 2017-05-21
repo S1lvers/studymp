@@ -9,4 +9,5 @@ import com.studymp.presentation.dto.OrderDto;
  */
 public interface OrderMapping {
     Order map(OrderDto orderDto, String creator) throws NotFoundException;
+    Order update(Order order, OrderDto orderDto);
 }

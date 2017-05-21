@@ -7,6 +7,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  */
 public class OrderDto {
 
+    @JsonProperty("id")
+    public Long id;
+
     @JsonProperty("name")
     public String name;
 

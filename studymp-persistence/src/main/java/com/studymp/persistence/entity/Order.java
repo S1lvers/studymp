@@ -32,8 +32,8 @@ public class Order {
     @Column(name = "order_description")
     private String description;
 
-    @Column(name = "order_price")
-    private Double price;
+    @Column(name = "order_cost")
+    private Double cost;
 
     @ManyToOne
     private User executor;
@@ -44,13 +44,13 @@ public class Order {
     public Order() {
     }
 
-    public Order(String name, Date createDate, User creator, Section section, String description, Double price) {
+    public Order(String name, Date createDate, User creator, Section section, String description, Double cost) {
         this.name = name;
         this.createDate = createDate;
         this.creator = creator;
         this.section = section;
         this.description = description;
-        this.price = price;
+        this.cost = cost;
     }
 
     public String getName() {
@@ -93,12 +93,12 @@ public class Order {
         this.description = description;
     }
 
-    public Double getPrice() {
-        return price;
+    public Double getCost() {
+        return cost;
     }
 
-    public void setPrice(Double price) {
-        this.price = price;
+    public void setCost(Double cost) {
+        this.cost = cost;
     }
 
     public User getExecutor() {
