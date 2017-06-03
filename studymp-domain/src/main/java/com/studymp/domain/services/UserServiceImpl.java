@@ -1,6 +1,7 @@
 package com.studymp.domain.services;
 
 import com.studymp.domain.exceptions.NotFoundException;
+import com.studymp.domain.interfaces.RoleService;
 import com.studymp.domain.interfaces.UserService;
 import com.studymp.persistence.entity.Role;
 import com.studymp.persistence.entity.User;
@@ -29,12 +30,12 @@ public class UserServiceImpl implements UserService {
     private static final Logger LOGGER = Logger.getLogger(UserServiceImpl.class);
 
     private final UserRepository userRepository;
-    private final RoleRepository roleRepository;
+    private final RoleService roleService;
 
     @Autowired
-    public UserServiceImpl(UserRepository userRepository, RoleRepository roleRepository) {
+    public UserServiceImpl(UserRepository userRepository, RoleService roleService) {
         this.userRepository = userRepository;
-        this.roleRepository = roleRepository;
+        this.roleService = roleService;
     }
 
     @Override
@@ -71,9 +72,9 @@ public class UserServiceImpl implements UserService {
 
     @Transactional
     @Override
-    public Long create(User user) {
+    public Long create(User user) throws NotFoundException {
         Set<Role> roles = new HashSet<>();
-        roles.add(roleRepository.findOne(1L));
+        roles.add(roleService.findRoleByName("USER"));
         user.setRoles(roles);
         user.setEnabled(false);
         Long id = userRepository.save(user).getId();

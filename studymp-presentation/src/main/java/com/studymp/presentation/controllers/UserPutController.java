@@ -1,5 +1,6 @@
 package com.studymp.presentation.controllers;
 
+import com.studymp.domain.exceptions.NotFoundException;
 import com.studymp.domain.interfaces.MailFactory;
 import com.studymp.domain.interfaces.UserService;
 import com.studymp.domain.interfaces.Validation;
@@ -55,9 +56,14 @@ public class UserPutController {
             return ResponseEntity.ok(responseDtoFactory.failure(validation.getErrorMessage()));
         }
         User user = userMapping.map(userDto);
-        userService.create(user);
         try {
+            userService.create(user);
             mailFactory.sendConfirmEmail(user);
+        }
+        catch (NotFoundException e){
+            LOGGER.debug(e);
+            LOGGER.error("Не удалось создать пользователя");
+            return ResponseEntity.ok(responseDtoFactory.failure(String.format("Ошибка при создании пользователя")));
         }
         catch (Exception e){
             return ResponseEntity.ok(responseDtoFactory.failure(String.format("Ошибка при попытке отправки ссылки на подтверждение аккаунта")));

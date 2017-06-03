@@ -42,4 +42,11 @@ public class Role {
     public void setUsers(Set<User> users) {
         this.users = users;
     }
+
+    public Role(String role) {
+        this.role = role;
+    }
+
+    public Role() {
+    }
 }

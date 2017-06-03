@@ -17,7 +17,7 @@ public interface UserService {
     User find(Long id) throws Exception;
     User findByUsername(String username) throws NotFoundException;
     User findByEmail(String email) throws Exception;
-    Long create(User user);
+    Long create(User user) throws NotFoundException;
     void update(User user);
     void delete(Long id);
     void approve(User user);

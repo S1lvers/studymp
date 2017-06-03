@@ -3,6 +3,7 @@ package com.studymp.persistence.configuration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
+import org.springframework.context.annotation.Profile;
 import org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
@@ -20,6 +21,7 @@ import java.util.Properties;
  * Created by qwerty on 14.03.2017.
  */
 @Configuration
+@Profile("!embedded")
 @EnableJpaRepositories(
         basePackages = {"com.studymp.persistence.repositories"}
 )
@@ -33,7 +35,7 @@ public class PersistenceJPAConfig{
         em.setPackagesToScan("com.studymp.persistence");
         JpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
         em.setJpaVendorAdapter(vendorAdapter);
-        em.setJpaProperties(additionalProperties());
+        em.setJpaProperties(additionalMySQLProperties());
         return em;
     }
 
@@ -62,7 +64,7 @@ public class PersistenceJPAConfig{
     }
 
 
-    Properties additionalProperties() {
+    Properties additionalMySQLProperties() {
         Properties properties = new Properties();
         properties.setProperty("hibernate.hbm2ddl.auto", "update");
         properties.setProperty("hibernate.dialect", "org.hibernate.dialect.MySQL5Dialect");
