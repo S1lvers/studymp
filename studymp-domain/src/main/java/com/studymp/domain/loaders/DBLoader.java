@@ -21,9 +21,11 @@ public class DBLoader implements ApplicationListener<ContextRefreshedEvent> {
     @Override
     public void onApplicationEvent(ContextRefreshedEvent event) {
         if(!roleService.isRoleExist("USER")){
+            LOGGER.info("Role USER doesn't exist \n Creating new role USER" );
             roleService.createRole("USER");
         }
         if(!roleService.isRoleExist("ADMIN")){
+            LOGGER.info("Role USER doesn't exist \n Creating new role ADMIN" );
             roleService.createRole("ADMIN");
         }
     }
