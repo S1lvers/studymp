@@ -1,5 +1,6 @@
 package com.studymp.presentation.services;
 
+import com.studymp.domain.interfaces.ActiveUserService;
 import com.studymp.domain.interfaces.UserService;
 import com.studymp.persistence.entity.Role;
 import com.studymp.persistence.entity.User;
@@ -34,6 +35,9 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     @Autowired
     private HttpServletRequest request;
 
+    @Autowired
+    private ActiveUserService activeUserService;
+
 
     public UserDetailsServiceImpl(UserService userService){
         this.userService = userService;
@@ -53,6 +57,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
             }
             LOGGER.info("User from username " + user.getUsername());
             LOGGER.debug("User from username " + user.getUsername());
+            activeUserService.mark(user.getUsername());
             return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(),
                     user.isEnabled(), true, true, true, getAuthorities(user));
         }

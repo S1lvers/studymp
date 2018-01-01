@@ -17,10 +17,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -29,7 +26,7 @@ import static org.jooq.lambda.Seq.seq;
 /**
  * Created by qwerty on 11.04.2017.
  */
-@Controller
+@RestController
 @RequestMapping("/test")
 public class TestController {
 
@@ -63,5 +60,22 @@ public class TestController {
             e.printStackTrace();
         }
         return ResponseEntity.ok(null);
+    }
+
+    class Message {
+        private String message;
+
+        public Message(String message) {
+            this.message = message;
+        }
+
+        public String getMessage() {
+            return message;
+        }
+    }
+
+    @RequestMapping(path = "/echo/{message}", method= RequestMethod.GET)
+    public Message echo(@PathVariable("message") String message) {
+        return new Message(message);
     }
 }

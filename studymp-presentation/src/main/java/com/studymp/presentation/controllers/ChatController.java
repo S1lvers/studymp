@@ -1,6 +1,7 @@
 package com.studymp.presentation.controllers;
 
 import com.studymp.domain.exceptions.NotFoundException;
+import com.studymp.domain.interfaces.ActiveUserService;
 import com.studymp.domain.interfaces.ChatMessageService;
 import com.studymp.domain.interfaces.ChatRoomService;
 import com.studymp.domain.interfaces.UserService;
@@ -19,9 +20,11 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import static org.jooq.lambda.Seq.seq;
 
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Created by qwerty on 14.04.2017.
@@ -34,13 +37,15 @@ public class ChatController {
     private final ChatMessageService chatMessageService;
     private final UserService userService;
     private final ResponseDtoFactory responseDtoFactory;
+    private final ActiveUserService activeUserService;
 
     @Autowired
-    public ChatController(ChatRoomService chatRoomService, ChatMessageService chatMessageService, UserService userService, ResponseDtoFactory responseDtoFactory) {
+    public ChatController(ChatRoomService chatRoomService, ChatMessageService chatMessageService, UserService userService, ResponseDtoFactory responseDtoFactory, ActiveUserService activeUserService) {
         this.chatRoomService = chatRoomService;
         this.chatMessageService = chatMessageService;
         this.userService = userService;
         this.responseDtoFactory = responseDtoFactory;
+        this.activeUserService = activeUserService;
     }
 
     // /chat?destination=username1
@@ -91,5 +96,24 @@ public class ChatController {
             LOGGER.error(String.format("Не удалось создать chatRoom"));
             throw new NotFoundException("Не удалось создать chatRoom");
         }
+    }
+
+    @RequestMapping(
+            value = "/userschat",
+            method = RequestMethod.GET)
+    public String getChatWithUsers(Model model) {
+        try {
+            String currentUsername = SecurityContextHolder.getContext().getAuthentication().getName();
+            List<String> activeUsers = seq(activeUserService.getActiveUsers()).filter(x -> !x.equals(currentUsername)).collect(Collectors.toList());
+            /*User principalUser = userService.findByUsername(SecurityContextHolder.getContext().getAuthentication().getName());
+            User destinationUser = userService.findByUsername(destinationUsername);
+            ChatRoom chatRoom = this.getChatRoom(principalUser, destinationUser);
+            PageRequest request = new PageRequest(0, 100, Sort.Direction.DESC, "createDate");
+            List<ChatMessage> chatMessages = chatMessageService.findByChatRoomWithPageable(chatRoom, request);*/
+            model.addAttribute("activeUsers", activeUsers);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return "userschat";
     }
 }

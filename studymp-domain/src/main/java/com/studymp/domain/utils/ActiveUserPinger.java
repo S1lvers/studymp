@@ -16,7 +16,7 @@ public class ActiveUserPinger {
         this.activeUserService = activeUserService;
     }
 
-    @Scheduled(fixedDelay = 2000)
+    @Scheduled(fixedDelay = 5000)
     public void pingUsers() {
         Set<String> activeUsers = activeUserService.getActiveUsers();
         template.convertAndSend("/topic/active", activeUsers);

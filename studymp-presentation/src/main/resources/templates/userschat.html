@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="loyout">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>Title</title>
+</head>
+<body>
+<div layout:fragment="content">
+    <div class="container">
+        <table>
+            <thead>
+            <tr>
+                <th>Имя пользователя</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="a: ${activeUsers}">
+                <td>
+                    <a th:href="@{/user/chat(destination=${a})}" th:text="${a}"></a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<script th:src="@{/js/frameworks/jquery-3.1.1.min.js}"></script>
+<script th:src="@{/js/frameworks/bootstrap.min.js}"></script>
+<script th:src="@{/js/frameworks/bootstrap.js}"></script>
+<script th:src="@{/js/frameworks/plugins/bootstrap-form-validator.js}"></script>
+<script th:src="@{/js/frameworks/plugins/bootstrap-toggle.min.js}"></script>
+</body>
+</html>
+

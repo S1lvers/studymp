@@ -20,7 +20,6 @@ public class ActiveUserController {
     }
 
     @MessageMapping("/activeUsers")
-
     public void activeUsers(Message<Object> message) {
 
         Principal user = message.getHeaders().get(SimpMessageHeaderAccessor.USER_HEADER, Principal.class);

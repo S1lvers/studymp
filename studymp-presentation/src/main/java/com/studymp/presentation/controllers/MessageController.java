@@ -15,31 +15,31 @@ import java.security.Principal;
 
 @Controller
 public class MessageController {
-  
-  private SimpMessagingTemplate template;
 
-  private final ChatMessageMapper chatMessageMapper;
-  private final ChatMessageService chatMessageService;
-  
-  @Autowired
-  public MessageController(SimpMessagingTemplate template, ChatMessageMapper chatMessageMapper,
-                           ChatMessageService chatMessageService) {
-    this.template = template;
-    this.chatMessageMapper = chatMessageMapper;
-    this.chatMessageService = chatMessageService;
-  }
+    private SimpMessagingTemplate template;
 
-  @MessageMapping("/chat")
-  public void greeting(Message<Object> message, @Payload ChatMessageModel chatMessageModel) throws Exception {
-    Principal principal = message.getHeaders().get(SimpMessageHeaderAccessor.USER_HEADER, Principal.class);
-    String authedSender = principal.getName();
-    chatMessageModel.setSender(authedSender);
-    String recipient = chatMessageModel.getRecipient();
-    chatMessageService.create(chatMessageMapper.map(chatMessageModel));
-    if (!authedSender.equals(recipient)) {
-      template.convertAndSendToUser(authedSender, "/queue/messages", chatMessageModel);
+    private final ChatMessageMapper chatMessageMapper;
+    private final ChatMessageService chatMessageService;
+
+    @Autowired
+    public MessageController(SimpMessagingTemplate template, ChatMessageMapper chatMessageMapper,
+                             ChatMessageService chatMessageService) {
+        this.template = template;
+        this.chatMessageMapper = chatMessageMapper;
+        this.chatMessageService = chatMessageService;
     }
-    template.convertAndSendToUser(recipient, "/queue/messages", chatMessageModel);
-  }
+
+    @MessageMapping("/chat")
+    public void greeting(Message<Object> message, @Payload ChatMessageModel chatMessageModel) throws Exception {
+        Principal principal = message.getHeaders().get(SimpMessageHeaderAccessor.USER_HEADER, Principal.class);
+        String authedSender = principal.getName();
+        chatMessageModel.setSender(authedSender);
+        String recipient = chatMessageModel.getRecipient();
+        chatMessageService.create(chatMessageMapper.map(chatMessageModel));
+        if (!authedSender.equals(recipient)) {
+            template.convertAndSendToUser(authedSender, "/queue/messages", chatMessageModel);
+        }
+        template.convertAndSendToUser(recipient, "/queue/messages", chatMessageModel);
+    }
 
 }
