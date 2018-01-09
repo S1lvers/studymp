@@ -13,6 +13,9 @@ import org.springframework.stereotype.Controller;
 
 import java.security.Principal;
 
+import static org.apache.commons.lang.StringEscapeUtils.escapeHtml;
+import static org.apache.commons.lang.StringEscapeUtils.escapeJavaScript;
+
 @Controller
 public class MessageController {
 
@@ -35,6 +38,8 @@ public class MessageController {
         String authedSender = principal.getName();
         chatMessageModel.setSender(authedSender);
         String recipient = chatMessageModel.getRecipient();
+        String msg = chatMessageModel.getMessage();
+        chatMessageModel.setMessage(escapeHtml(msg));
         chatMessageService.create(chatMessageMapper.map(chatMessageModel));
         if (!authedSender.equals(recipient)) {
             template.convertAndSendToUser(authedSender, "/queue/messages", chatMessageModel);

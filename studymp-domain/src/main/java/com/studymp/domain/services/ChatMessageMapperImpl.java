@@ -11,6 +11,8 @@ import com.studymp.persistence.entity.ChatRoom;
 import com.studymp.persistence.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import static org.apache.commons.lang.StringEscapeUtils.escapeJavaScript;
+import static org.apache.commons.lang.StringEscapeUtils.escapeHtml;
 
 import java.util.Date;
 
@@ -37,6 +39,7 @@ public class ChatMessageMapperImpl implements ChatMessageMapper {
         if (chatRoom == null){
             chatRoom = chatRoomService.find(chatRoomService.create(new ChatRoom(UniqueKeyGenerator.GenerateUserPairKey(author, companion))));
         }
+
         return new ChatMessage(chatMessageModel.getMessage(),
                 author,
                 companion,

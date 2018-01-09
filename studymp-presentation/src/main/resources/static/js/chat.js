@@ -18,10 +18,9 @@ function connect() {
 }
 
 function showActive(activeMembers) {
-    renderActive(activeMembers.body);
     stompClient.send('/app/activeUsers', {}, '');
 }
-
+/*
 function renderActive(activeMembers) {
     var previouslySelected = $('.user-selected').text();
     var usersWithPendingMessages = new Object();
@@ -64,15 +63,20 @@ function renderActive(activeMembers) {
         userDiv.append(userLine);
     });
     $('#userList').html(userDiv);
-}
+}*/
 
 function disconnect() {
     stompClient.disconnect();
-    console.log("Disconnected");
+    //console.log("Disconnected");
 }
 
-function sendMessageTo(user) {
-    var chatInput = '#input-chat-' + user;
+$('#send_message_btn').click(function () {
+    sendMessageTo();
+});
+
+function sendMessageTo() {
+    var chatInput = '#message_input_field';
+    var user = $(chatInput).attr('destination');
     var message = $(chatInput).val();
     if (!message.length) {
         return;
@@ -85,54 +89,44 @@ function sendMessageTo(user) {
     $(chatInput).focus();
 }
 
-function getChatWindow(userName) {
-    var existingChats = $('.chat-container');
-    var elementId = 'chat-' + userName;
-    var containerId = elementId + '-container';
-    var selector = '#' + containerId;
-    var inputId = 'input-' + elementId;
-    if (!$(selector).length) {
-        var chatContainer = $('<div>', {id: containerId, class: 'chat-container'});
-        var chatWindow = $('<div>', {id: elementId, class: 'chat'});
-        var chatInput = $('<textarea>', {id: inputId, type: 'text', class: 'chat-input', rows: '2', cols: '75',
-            placeholder: 'Enter a message.  Something deep and meaningful.  Something you can be proud of.'});
-        var chatSubmit = $('<button>', {id: 'submit-' + elementId, type: 'submit', class: 'chat-submit'})
-        chatSubmit.html('Send');
+var Message = function (arg) {
+    this.text = arg.text, this.message_side = arg.message_side;
+    this.draw = function (_this) {
+        return function () {
+            var $message;
+            $message = $($('.message_template').clone().html());
+            $message.addClass(_this.message_side).find('.text').html(_this.text);
+            $('.messages').append($message);
+            return setTimeout(function () {
+                return $message.addClass('appeared');
+            }, 0);
+        };
+    }(this);
+    return this;
+};
 
-        chatInput.keypress(function(event) {
-            if (event.which == 13) {
-                var user = event.currentTarget.id.substring(11); // gets rid of 'input-chat-'
-                event.preventDefault();
-                sendMessageTo(user);
-            }
-        });
-
-        chatSubmit.click(function(event) {
-            var user = event.currentTarget.id.substring(12); // gets rid of 'submit-chat-'
-            sendMessageTo(user);
-        });
-
-        chatContainer.append(chatWindow);
-        chatContainer.append(chatInput);
-        chatContainer.append(chatSubmit);
-
-        if (existingChats.length) {
-            chatContainer.hide();
-        }
-
-        $('body').append(chatContainer);
+$('.message_input').keyup(function (e) {
+    if (e.which === 13) {
+        return sendMessageTo();
     }
-    return $(selector);
-}
+});
 
 function showMessage(message) {
-    var chatWindowTarget = (message.recipient === whoami) ? message.sender : message.recipient;
-    var chatContainer = getChatWindow(chatWindowTarget);
-    var chatWindow = chatContainer.children('.chat');
-    var userDisplay = $('<span>', {class: (message.sender === whoami ? 'chat-sender' : 'chat-recipient')});
-    userDisplay.html(message.sender + ' says: ');
-    var messageDisplay = $('<span>');
-    messageDisplay.html(message.message);
+    var chatWindow = $('.messages');
+    var message_side = (message.recipient === whoami) ? 'left' : 'right';
+    // var chatWindowTarget = (message.recipient === whoami) ? message.sender : message.recipient;
+    // var chatContainer = getChatWindow(chatWindowTarget);
+    // var chatWindow = chatContainer.children('.chat');
+    // var userDisplay = $('<span>', {class: (message.sender === whoami ? 'chat-sender' : 'chat-recipient')});
+    // userDisplay.html(message.sender + ' says: ');
+    // var messageDisplay = $('<span>');
+    var resultMessage = new Message({
+        text: message.message,
+        message_side: message_side
+    });
+    resultMessage.draw();
+    return chatWindow.animate({scrollTop: chatWindow.prop('scrollHeight')}, 300);
+    /*messageDisplay.html(message.message);
     chatWindow.append(userDisplay).append(messageDisplay).append('<br/>');
     chatWindow.animate({ scrollTop: chatWindow[0].scrollHeight}, 1);
     if (message.sender !== whoami) {
@@ -141,7 +135,7 @@ function showMessage(message) {
             sendingUser.append(newMessageIcon());
             sendingUser.addClass('pending-messages');
         }
-    }
+    }*/
 }
 
 function newMessageIcon() {

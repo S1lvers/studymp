@@ -20,6 +20,8 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+import static org.apache.commons.lang.StringEscapeUtils.unescapeHtml;
 import static org.jooq.lambda.Seq.seq;
 
 import java.util.Date;
@@ -57,9 +59,12 @@ public class ChatController {
             User principalUser = userService.findByUsername(SecurityContextHolder.getContext().getAuthentication().getName());
             User destinationUser = userService.findByUsername(destinationUsername);
             ChatRoom chatRoom = this.getChatRoom(principalUser, destinationUser);
-            PageRequest request = new PageRequest(0, 100, Sort.Direction.DESC, "createDate");
+            PageRequest request = new PageRequest(0, 100, Sort.Direction.ASC, "createDate");
             List<ChatMessage> chatMessages = chatMessageService.findByChatRoomWithPageable(chatRoom, request);
+            seq(chatMessages).forEach(x -> x.setText(unescapeHtml(x.getText())));
             model.addAttribute("messages", chatMessages);
+            model.addAttribute("destinationName", destinationUser.getUsername());
+            model.addAttribute("chatTitle", "Чат с " + destinationUser.getUsername());
         } catch (Exception e) {
             e.printStackTrace();
         }
